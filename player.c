@@ -11,7 +11,7 @@ int window_width, window_height;
 static Uint32 last_shot_time = 0;
 static Uint32 shot_cooldown = 200;
 Position position = {0,0}; // Start at the bottom center of screen
-static float move_speed = 100.0f; // Movement speed
+static float move_speed = 200.0f; // Movement speed
 
 // Function to handle joystick connection
 static void connect_joystick() {

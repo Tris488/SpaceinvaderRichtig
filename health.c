@@ -4,7 +4,7 @@
 
 #include "health.h"
 static SDL_Texture* health_texture;
-static int health=3;
+static int healthpoints=3;
 static SDL_FRect spritehealth;
 
 typedef struct {
@@ -21,7 +21,7 @@ static void handle_events(SDL_Event* event, void* data){
 static void update(float delta_time, void* data)
  {
 
-    switch (health) {
+    switch (healthpoints) {
         case 3:
             spritehealth = (SDL_FRect){1, 3, 30, 11};
         break;
