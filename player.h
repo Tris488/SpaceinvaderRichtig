@@ -9,7 +9,7 @@
 #include "entity.h"
 #include "pew.h"
 #include <SDL3/SDL_joystick.h>
-#include "gamewindow/wichitg.h"
+#include "mainfolder/wichitg.h"
 typedef struct {
     float x,y;
 }Position;

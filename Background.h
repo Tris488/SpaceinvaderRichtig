@@ -8,6 +8,7 @@
 #include <SDL3_image/SDL_image.h>
 #include "entity.h"
 #include "Background.h"
+#include "button.h"
 
 Entity init_map(SDL_Renderer* renderer);
 #endif //BACKGROUND_H

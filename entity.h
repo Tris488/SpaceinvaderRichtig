@@ -10,10 +10,10 @@
 
 typedef struct Entity {
     void (*update)(float delta_time, void* data);
-    void (*render)(SDL_Renderer*, void* data);
+    void (*render)(SDL_Renderer* renderer, void* data);
     void (*handle_events)(SDL_Event* event, void* data);
     void (*cleanup)(void* data);
-    void* data;
+    void *data;
 } Entity;
 
 

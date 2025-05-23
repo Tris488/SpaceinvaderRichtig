@@ -9,18 +9,18 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 add_subdirectory(vendored/SDL_image EXCLUDE_FROM_ALL)
 # Create your game executable target as usual
-add_executable(Spaceinvaders WIN32 gamewindow/init.c
-        gamewindow/init.h
-        gamewindow/iterate.c
-        gamewindow/iterate.h
-        gamewindow/update.c
-        gamewindow/update.h
-        gamewindow/render.c
-        gamewindow/render.h
-        gamewindow/events.c
-        gamewindow/quit.c
-        gamewindow/quit.h
-        gamewindow/wichitg.h
+add_executable(Spaceinvaders WIN32 mainfolder/init.c
+        mainfolder/init.h
+        mainfolder/iterate.c
+        mainfolder/iterate.h
+        mainfolder/update.c
+        mainfolder/update.h
+        mainfolder/render.c
+        mainfolder/render.h
+        mainfolder/events.c
+        mainfolder/quit.c
+        mainfolder/quit.h
+        mainfolder/wichitg.h
         entity.c
         entity.h
         Background.c
@@ -31,6 +31,10 @@ add_executable(Spaceinvaders WIN32 gamewindow/init.c
         health.h
         pew.c
         pew.h
+        startframe.c
+        startframe.h
+        button.c
+        button.h
 )
 
 # Link to the actual SDL3 library.

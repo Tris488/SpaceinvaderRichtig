@@ -20,6 +20,7 @@ static void render(SDL_Renderer* renderer) {
 
     SDL_GetCurrentRenderOutputSize(renderer, &window_width, &window_height);
 
+
     SDL_FRect map_position = {0, 0, (float)window_width, (float)window_height};
     SDL_SetTextureScaleMode(map_texture, SDL_SCALEMODE_NEAREST);
     SDL_RenderTexture(renderer,map_texture,NULL, &map_position);

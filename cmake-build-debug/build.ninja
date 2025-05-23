@@ -49,47 +49,47 @@ cmake_ninja_workdir = C$:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug
 
 build cmake_object_order_depends_target_Spaceinvaders: phony || cmake_object_order_depends_target_SDL3-shared cmake_object_order_depends_target_SDL3_image-shared
 
-build CMakeFiles/Spaceinvaders.dir/gamewindow/init.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/gamewindow/init.c || cmake_object_order_depends_target_Spaceinvaders
-  DEP_FILE = CMakeFiles\Spaceinvaders.dir\gamewindow\init.c.obj.d
+build CMakeFiles/Spaceinvaders.dir/mainfolder/init.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/mainfolder/init.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\mainfolder\init.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
   OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
-  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\gamewindow
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\mainfolder
 
-build CMakeFiles/Spaceinvaders.dir/gamewindow/iterate.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/gamewindow/iterate.c || cmake_object_order_depends_target_Spaceinvaders
-  DEP_FILE = CMakeFiles\Spaceinvaders.dir\gamewindow\iterate.c.obj.d
+build CMakeFiles/Spaceinvaders.dir/mainfolder/iterate.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/mainfolder/iterate.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\mainfolder\iterate.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
   OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
-  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\gamewindow
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\mainfolder
 
-build CMakeFiles/Spaceinvaders.dir/gamewindow/update.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/gamewindow/update.c || cmake_object_order_depends_target_Spaceinvaders
-  DEP_FILE = CMakeFiles\Spaceinvaders.dir\gamewindow\update.c.obj.d
+build CMakeFiles/Spaceinvaders.dir/mainfolder/update.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/mainfolder/update.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\mainfolder\update.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
   OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
-  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\gamewindow
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\mainfolder
 
-build CMakeFiles/Spaceinvaders.dir/gamewindow/render.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/gamewindow/render.c || cmake_object_order_depends_target_Spaceinvaders
-  DEP_FILE = CMakeFiles\Spaceinvaders.dir\gamewindow\render.c.obj.d
+build CMakeFiles/Spaceinvaders.dir/mainfolder/render.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/mainfolder/render.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\mainfolder\render.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
   OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
-  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\gamewindow
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\mainfolder
 
-build CMakeFiles/Spaceinvaders.dir/gamewindow/events.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/gamewindow/events.c || cmake_object_order_depends_target_Spaceinvaders
-  DEP_FILE = CMakeFiles\Spaceinvaders.dir\gamewindow\events.c.obj.d
+build CMakeFiles/Spaceinvaders.dir/mainfolder/events.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/mainfolder/events.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\mainfolder\events.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
   OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
-  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\gamewindow
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\mainfolder
 
-build CMakeFiles/Spaceinvaders.dir/gamewindow/quit.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/gamewindow/quit.c || cmake_object_order_depends_target_Spaceinvaders
-  DEP_FILE = CMakeFiles\Spaceinvaders.dir\gamewindow\quit.c.obj.d
+build CMakeFiles/Spaceinvaders.dir/mainfolder/quit.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/mainfolder/quit.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\mainfolder\quit.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
   OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
-  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\gamewindow
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir\mainfolder
 
 build CMakeFiles/Spaceinvaders.dir/entity.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/entity.c || cmake_object_order_depends_target_Spaceinvaders
   DEP_FILE = CMakeFiles\Spaceinvaders.dir\entity.c.obj.d
@@ -126,6 +126,20 @@ build CMakeFiles/Spaceinvaders.dir/pew.c.obj: C_COMPILER__Spaceinvaders_unscanne
   OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
   OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir
 
+build CMakeFiles/Spaceinvaders.dir/startframe.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/startframe.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\startframe.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
+  OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir
+
+build CMakeFiles/Spaceinvaders.dir/button.c.obj: C_COMPILER__Spaceinvaders_unscanned_Debug C$:/Users/tb/CLionProjects/Spaceinvaders/button.c || cmake_object_order_depends_target_Spaceinvaders
+  DEP_FILE = CMakeFiles\Spaceinvaders.dir\button.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/include-revision -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/include -IC:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL_image/include
+  OBJECT_DIR = CMakeFiles\Spaceinvaders.dir
+  OBJECT_FILE_DIR = CMakeFiles\Spaceinvaders.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Spaceinvaders
@@ -134,7 +148,7 @@ build CMakeFiles/Spaceinvaders.dir/pew.c.obj: C_COMPILER__Spaceinvaders_unscanne
 #############################################
 # Link the executable Debug\Spaceinvaders.exe
 
-build Debug/Spaceinvaders.exe: C_EXECUTABLE_LINKER__Spaceinvaders_Debug CMakeFiles/Spaceinvaders.dir/gamewindow/init.c.obj CMakeFiles/Spaceinvaders.dir/gamewindow/iterate.c.obj CMakeFiles/Spaceinvaders.dir/gamewindow/update.c.obj CMakeFiles/Spaceinvaders.dir/gamewindow/render.c.obj CMakeFiles/Spaceinvaders.dir/gamewindow/events.c.obj CMakeFiles/Spaceinvaders.dir/gamewindow/quit.c.obj CMakeFiles/Spaceinvaders.dir/entity.c.obj CMakeFiles/Spaceinvaders.dir/Background.c.obj CMakeFiles/Spaceinvaders.dir/player.c.obj CMakeFiles/Spaceinvaders.dir/health.c.obj CMakeFiles/Spaceinvaders.dir/pew.c.obj | vendored/SDL_image/libSDL3_image.dll.a vendored/SDL/libSDL3.dll.a C$:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/src/dynapi/SDL_dynapi.sym || Debug/SDL3.dll Debug/SDL3_image.dll
+build Debug/Spaceinvaders.exe: C_EXECUTABLE_LINKER__Spaceinvaders_Debug CMakeFiles/Spaceinvaders.dir/mainfolder/init.c.obj CMakeFiles/Spaceinvaders.dir/mainfolder/iterate.c.obj CMakeFiles/Spaceinvaders.dir/mainfolder/update.c.obj CMakeFiles/Spaceinvaders.dir/mainfolder/render.c.obj CMakeFiles/Spaceinvaders.dir/mainfolder/events.c.obj CMakeFiles/Spaceinvaders.dir/mainfolder/quit.c.obj CMakeFiles/Spaceinvaders.dir/entity.c.obj CMakeFiles/Spaceinvaders.dir/Background.c.obj CMakeFiles/Spaceinvaders.dir/player.c.obj CMakeFiles/Spaceinvaders.dir/health.c.obj CMakeFiles/Spaceinvaders.dir/pew.c.obj CMakeFiles/Spaceinvaders.dir/startframe.c.obj CMakeFiles/Spaceinvaders.dir/button.c.obj | vendored/SDL_image/libSDL3_image.dll.a vendored/SDL/libSDL3.dll.a C$:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/src/dynapi/SDL_dynapi.sym || Debug/SDL3.dll Debug/SDL3_image.dll
   FLAGS = -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = vendored/SDL_image/libSDL3_image.dll.a  vendored/SDL/libSDL3.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
