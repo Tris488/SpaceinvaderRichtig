@@ -8,8 +8,13 @@
 #include "SDL3/SDL_main.h"
 #include "../background.h"
 #include "wichitg.h"
-#include"../player.h"
+#include "../player.h"
 #include "../health.h"
 #include "../button.h"
-bool start=false;
+
+// Keine globalen Variablen in Header-Dateien!
+// Wenn Sie start brauchen, deklarieren Sie es als extern:
+// extern bool start;
+// Und definieren Sie es in einer .c Datei
+
 #endif //INIT_H

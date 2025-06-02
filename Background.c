@@ -7,7 +7,7 @@ static void cleanup(){
 
 }
 static void handle_events(SDL_Event* event, void* data)
-   {
+{
 
 }
 

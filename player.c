@@ -36,7 +36,7 @@ static void connect_joystick() {
     }
 }
 
-static void cleanup() {
+static void cleanup(void* data) {
     if (joystick) {
         SDL_CloseJoystick(joystick);
         joystick = NULL;
@@ -70,11 +70,18 @@ static void handle_events(SDL_Event* event, void* data) {
 }
 
 static void update(float delta_time, void* data) {
-    // Keyboard controls
-    Uint32 current_shot_time=SDL_GetTicks();
+    // data ist der AppState pointer
+    if (!data) return;
+
     AppState* state = (AppState*)data;
+    if (!state->renderer) return;
+
     SDL_Renderer* renderer = state->renderer;
+
+    // Keyboard controls
+    Uint32 current_shot_time = SDL_GetTicks();
     const Uint8 *keyboard_state = SDL_GetKeyboardState(NULL);
+
     if (keyboard_state[SDL_SCANCODE_W] || keyboard_state[SDL_SCANCODE_UP]) {
         position.y -= move_speed * delta_time;
     }
@@ -87,26 +94,26 @@ static void update(float delta_time, void* data) {
     if (keyboard_state[SDL_SCANCODE_D] || keyboard_state[SDL_SCANCODE_RIGHT]) {
         position.x += move_speed * delta_time;
     }
+
+    // Shooting
     if (keyboard_state[SDL_SCANCODE_SPACE]) {
-        if (keyboard_state[SDL_SCANCODE_SPACE]) {
-            if (current_shot_time>last_shot_time+shot_cooldown){
-                if (entities_count < MAX_ENTITIES) {
-                    // Debug-Ausgabe
-                    printf("Spieler feuert Schuss ab: x=%.2f, y=%.2f\n", position.x, position.y);
+        if (current_shot_time > last_shot_time + shot_cooldown) {
+            if (entities_count < MAX_ENTITIES) {
+                printf("Spieler feuert Schuss ab: x=%.2f, y=%.2f\n", position.x, position.y);
 
-                    // Schuss erstellen
-                    entities[entities_count] = create_shot_entity(renderer, position.x + 10, position.y - 20);
+                // Schuss erstellen
+                Entity new_shot = create_shot_entity(renderer, position.x + 10, position.y - 20);
 
-                    // Nur erhöhen, wenn der Schuss erfolgreich erstellt wurde
-                    if (entities[entities_count].data != NULL) {
-                        entities_count++;
-                        printf("Schuss erstellt. Neue Entitäten-Anzahl: %d\n", entities_count);
-                    }
-                    last_shot_time=current_shot_time;
+                // Nur hinzufügen, wenn der Schuss erfolgreich erstellt wurde
+                if (new_shot.data != NULL) {
+                    entities[entities_count] = new_shot;
+                    entities_count++;
+                    printf("Schuss erstellt. Neue Entitäten-Anzahl: %d\n", entities_count);
+                    last_shot_time = current_shot_time;
                 }
-                else {
-                    printf("Maximale Anzahl an Entities erreicht!\n");
-                }
+            }
+            else {
+                printf("Maximale Anzahl an Entities erreicht!\n");
             }
         }
     }
@@ -130,18 +137,20 @@ static void update(float delta_time, void* data) {
             position.y += normalized_y * move_speed * delta_time;
         }
 
-        // Check joystick buttons
-        int num_buttons = SDL_GetNumJoystickButtons(joystick);
-        for (int i = 0; i < num_buttons; i++) {
-            if (SDL_GetJoystickButton(joystick, i)) {
-                // Handle button press
-                // For example: if (i == 0) { fire(); }
+        // Check joystick buttons for shooting
+        if (SDL_GetJoystickButton(joystick, 0)) { // A button
+            if (current_shot_time > last_shot_time + shot_cooldown) {
+                if (entities_count < MAX_ENTITIES) {
+                    Entity new_shot = create_shot_entity(renderer, position.x + 10, position.y - 20);
+                    if (new_shot.data != NULL) {
+                        entities[entities_count] = new_shot;
+                        entities_count++;
+                        last_shot_time = current_shot_time;
+                    }
+                }
             }
         }
     }
-
-    // Screen boundaries
-
 
     // Keep player within screen bounds
     if (position.x < 0) {
@@ -158,11 +167,14 @@ static void update(float delta_time, void* data) {
     }
 }
 
-static void render(SDL_Renderer* renderer, void* data){  // Add data parameter
+static void render(SDL_Renderer* renderer, void* data) {
+    if (!renderer || !player_texture) return;
+
     SDL_FRect player_position = {position.x, position.y, 20, 40};
     SDL_SetTextureScaleMode(player_texture, SDL_SCALEMODE_NEAREST);
     SDL_RenderTexture(renderer, player_texture, &spriteplayer_portion, &player_position);
 }
+
 Entity init_player(SDL_Renderer* renderer) {
     const char path[] = "C:\\Users\\tb\\CLionProjects\\Spaceinvaders\\pico8_invaders_sprites_LARGE.png";
     player_texture = IMG_LoadTexture(renderer, path);
@@ -174,14 +186,15 @@ Entity init_player(SDL_Renderer* renderer) {
     // Try to connect any available joystick at initialization
     connect_joystick();
     SDL_GetCurrentRenderOutputSize(renderer, &window_width, &window_height);
-    position.x=window_width/2;
-    position.y=window_height-100;
+    position.x = window_width / 2;
+    position.y = window_height - 100;
+
     Entity player = {
         .cleanup = cleanup,
         .handle_events = handle_events,
         .update = update,
         .render = render,
-        .data = NULL  // Make sure this is set to NULL or actual data
+        .data = NULL  // Player speichert seine Daten in statischen Variablen
     };
 
     return player;

@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <stdbool.h>  // Für bool-Typ
 
-Entity create_shot_entity(SDL_Renderer* renderer, float x, float y);
 // Verbesserte ShotData-Struktur
 typedef struct {
     float x;          // X-Position
@@ -20,5 +19,12 @@ typedef struct {
     float time;
     int id;           // Schuss-ID
     bool active;      // Ist der Schuss aktiv?
+    bool should_remove; // Soll der Schuss entfernt werden?
 } ShotData;
+
+Entity create_shot_entity(SDL_Renderer* renderer, float x, float y);
+
+// Globale Aufräumfunktion
+void cleanup_inactive_shots();
+
 #endif
