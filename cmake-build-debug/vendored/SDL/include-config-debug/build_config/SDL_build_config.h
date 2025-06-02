@@ -277,6 +277,7 @@
 /* #undef SDL_AUDIO_DRIVER_PSP */
 /* #undef SDL_AUDIO_DRIVER_PS2 */
 /* #undef SDL_AUDIO_DRIVER_N3DS */
+/* #undef SDL_AUDIO_DRIVER_NGAGE */
 /* #undef SDL_AUDIO_DRIVER_QNX */
 
 /* #undef SDL_AUDIO_DRIVER_PRIVATE */
@@ -365,6 +366,7 @@
 /* #undef SDL_TIME_PSP */
 /* #undef SDL_TIME_PS2 */
 /* #undef SDL_TIME_N3DS */
+/* #undef SDL_TIME_NGAGE */
 
 /* Enable various timer systems */
 /* #undef SDL_TIMER_HAIKU */
@@ -387,6 +389,7 @@
 /* #undef SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC */
 /* #undef SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC_GBM */
 /* #undef SDL_VIDEO_DRIVER_N3DS */
+/* #undef SDL_VIDEO_DRIVER_NGAGE */
 #define SDL_VIDEO_DRIVER_OFFSCREEN 1
 /* #undef SDL_VIDEO_DRIVER_PS2 */
 /* #undef SDL_VIDEO_DRIVER_PSP */
@@ -438,6 +441,7 @@
 #define SDL_VIDEO_RENDER_VULKAN 1
 #define SDL_VIDEO_RENDER_OGL 1
 #define SDL_VIDEO_RENDER_OGL_ES2 1
+/* #undef SDL_VIDEO_RENDER_NGAGE */
 /* #undef SDL_VIDEO_RENDER_PS2 */
 /* #undef SDL_VIDEO_RENDER_PSP */
 /* #undef SDL_VIDEO_RENDER_VITA_GXM */
@@ -543,6 +547,11 @@
 /* #undef SDL_VIDEO_VITA_PIB */
 /* #undef SDL_VIDEO_VITA_PVR */
 /* #undef SDL_VIDEO_VITA_PVR_OGL */
+
+/* xkbcommon version info */
+#define SDL_XKBCOMMON_VERSION_MAJOR 
+#define SDL_XKBCOMMON_VERSION_MINOR 
+#define SDL_XKBCOMMON_VERSION_PATCH 
 
 /* Libdecor version info */
 #define SDL_LIBDECOR_VERSION_MAJOR 

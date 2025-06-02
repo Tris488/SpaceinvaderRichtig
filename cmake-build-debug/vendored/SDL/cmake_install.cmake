@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL
+# Install script for directory: C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/vendored/SDL
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

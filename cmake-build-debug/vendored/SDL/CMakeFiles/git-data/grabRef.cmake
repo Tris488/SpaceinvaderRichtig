@@ -17,27 +17,27 @@
 
 set(HEAD_HASH)
 
-file(READ "C:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
+file(READ "C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
 
 string(STRIP "${HEAD_CONTENTS}" HEAD_CONTENTS)
 if(HEAD_CONTENTS MATCHES "ref")
 	# named branch
 	string(REPLACE "ref: " "" HEAD_REF "${HEAD_CONTENTS}")
-	if(EXISTS "C:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/.git/${HEAD_REF}")
-		configure_file("C:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/.git/${HEAD_REF}" "C:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/head-ref" COPYONLY)
+	if(EXISTS "C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/vendored/SDL/.git/${HEAD_REF}")
+		configure_file("C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/vendored/SDL/.git/${HEAD_REF}" "C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/head-ref" COPYONLY)
 	else()
-		configure_file("C:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/.git/packed-refs" "C:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/packed-refs" COPYONLY)
-		file(READ "C:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/packed-refs" PACKED_REFS)
+		configure_file("C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/vendored/SDL/.git/packed-refs" "C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/packed-refs" COPYONLY)
+		file(READ "C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/packed-refs" PACKED_REFS)
 		if(${PACKED_REFS} MATCHES "([0-9a-z]*) ${HEAD_REF}")
 			set(HEAD_HASH "${CMAKE_MATCH_1}")
 		endif()
 	endif()
 else()
 	# detached HEAD
-	configure_file("C:/Users/tb/CLionProjects/Spaceinvaders/vendored/SDL/.git/HEAD" "C:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/head-ref" COPYONLY)
+	configure_file("C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/vendored/SDL/.git/HEAD" "C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/head-ref" COPYONLY)
 endif()
 
 if(NOT HEAD_HASH)
-	file(READ "C:/Users/tb/CLionProjects/Spaceinvaders/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
+	file(READ "C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/cmake-build-debug/vendored/SDL/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
 	string(STRIP "${HEAD_HASH}" HEAD_HASH)
 endif()
