@@ -39,5 +39,6 @@ void app_update(void *appstate) {
         }
     }
 
-    // Update enemy movement
+    // Aufräumen inaktiver Schüsse
+    cleanup_inactive_shots();
 }

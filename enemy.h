@@ -21,15 +21,15 @@ typedef enum {
     ENEMY_YELLOW,
     ENEMY_PINK,
     ENEMY_BLUE,
-    
+
     // Mittlere Gegner (2 Leben)
     ENEMY_GOLD,
     ENEMY_DARKGREEN,
     ENEMY_SILVER,
-    
+
     // Große Gegner (3 Leben)
     ENEMY_GREEN,
-    
+
     ENEMY_TYPE_COUNT
 } EnemyType;
 
@@ -44,11 +44,11 @@ typedef struct {
     int points;              // Punkte beim Besiegen
     float speed;
     bool active;
-    
+
     // Bewegung
     float velocity_x;
     float velocity_y;
-    
+
     // Animation
     float animation_timer;
     int animation_frame;
@@ -64,11 +64,6 @@ typedef struct {
     float spawn_delay;
     bool wave_complete;
 } Wave;
-typedef struct {
-    int wave_number;
-    int enemy_count[ENEMY_TYPE_COUNT];
-    float spawn_delay;
-} WaveDefinition;
 
 // Initialisierung
 void enemy_init_system(SDL_Renderer* renderer);
