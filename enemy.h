@@ -64,6 +64,11 @@ typedef struct {
     float spawn_delay;
     bool wave_complete;
 } Wave;
+typedef struct {
+    int wave_number;
+    int enemy_count[ENEMY_TYPE_COUNT];
+    float spawn_delay;
+} WaveDefinition;
 
 // Initialisierung
 void enemy_init_system(SDL_Renderer* renderer);

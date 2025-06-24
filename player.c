@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "enemy.h"
 #include "health.h"
-
+#include "gameover.h"
 static SDL_Texture* player_texture;
 static SDL_FRect spriteplayer_portion = {0, 1, 8, 8};
 static SDL_Joystick* joystick = NULL;
@@ -79,6 +79,7 @@ static void handle_events(SDL_Event* event, void* data) {
 }
 
 static void update(float delta_time, void* data) {
+    if (is_game_over()) return;
     // data ist der AppState pointer
     if (!data) return;
 

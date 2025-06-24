@@ -95,11 +95,6 @@ static const EnemyDefinition enemy_definitions[ENEMY_TYPE_COUNT] = {
 };
 
 // Wellen-Definitionen
-typedef struct {
-    int wave_number;
-    int enemy_count[ENEMY_TYPE_COUNT];
-    float spawn_delay;
-} WaveDefinition;
 
 static const WaveDefinition wave_definitions[] = {
     // Welle 1: Nur kleine Gegner
@@ -348,9 +343,11 @@ void wave_init(int wave_number) {
     // Gesamtzahl der Gegner berechnen
     for (int i = 0; i < ENEMY_TYPE_COUNT; i++) {
         current_wave.total_enemies += wave_def->enemy_count[i];
+        printf("Wave %d: Enemy type %d count: %d\n", wave_number, i, wave_def->enemy_count[i]);
     }
 
     current_wave.enemies_remaining = current_wave.total_enemies;
+    printf("Wave %d initialized with %d enemies\n", wave_number, current_wave.total_enemies);
 }
 
 void wave_update(float delta_time) {
@@ -367,26 +364,39 @@ void wave_update(float delta_time) {
         // Naechsten Gegnertyp zum Spawnen finden
         const WaveDefinition* wave_def = &wave_definitions[current_wave.wave_number - 1];
 
-        for (int i = 0; i < ENEMY_TYPE_COUNT; i++) {
-            int remaining = wave_def->enemy_count[i] -
-                          (current_wave.enemies_spawned < wave_def->enemy_count[i] ?
-                           current_wave.enemies_spawned : wave_def->enemy_count[i]);
+        // Array fuer verbleibende Gegner pro Typ
+        static int spawned_per_type[ENEMY_TYPE_COUNT] = {0};
 
-            if (remaining > 0) {
+        // Reset beim Start einer neuen Welle
+        if (current_wave.enemies_spawned == 0) {
+            for (int i = 0; i < ENEMY_TYPE_COUNT; i++) {
+                spawned_per_type[i] = 0;
+            }
+        }
+
+        // Finde einen Gegnertyp der noch gespawnt werden muss
+        for (int i = 0; i < ENEMY_TYPE_COUNT; i++) {
+            if (spawned_per_type[i] < wave_def->enemy_count[i]) {
                 // Zufaellige X-Position
-                float x = (float)(rand() % 750) + 25; // Anpassen an deine Bildschirmbreite
+                float x = (float)(rand() % 700) + 50; // Anpassen an deine Bildschirmbreite
                 float y = -50; // Oberhalb des Bildschirms spawnen
 
-                enemy_spawn(i, x, y);
-                current_wave.enemies_spawned++;
+                Enemy* spawned = enemy_spawn(i, x, y);
+                if (spawned) {
+                    spawned_per_type[i]++;
+                    current_wave.enemies_spawned++;
+                    printf("Spawned enemy type %d (%d/%d)\n", i,
+                           spawned_per_type[i], wave_def->enemy_count[i]);
+                }
                 break;
             }
         }
     }
 
     // Pruefen ob Welle abgeschlossen
-    if (current_wave.enemies_remaining == 0) {
-        wave_start_next();
+    if (current_wave.enemies_remaining == 0 && current_wave.enemies_spawned >= current_wave.total_enemies) {
+        current_wave.wave_complete = true;
+        printf("Welle %d abgeschlossen!\n", current_wave.wave_number);
     }
 }
 

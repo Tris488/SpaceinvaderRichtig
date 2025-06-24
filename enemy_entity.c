@@ -19,7 +19,11 @@ static void enemy_system_update(float delta_time, void* data) {
     if (!enemy_system_data) return;
 
     // Keine Updates bei Game Over
-    if (is_game_over()) return;
+    if (is_game_over()) {
+        // Reset wave_started wenn Game Over, damit beim Neustart die Welle startet
+        enemy_system_data->wave_started = false;
+        return;
+    }
 
     // Starte erste Welle, falls noch nicht geschehen
     if (!enemy_system_data->wave_started) {
@@ -66,7 +70,7 @@ static void enemy_system_render(SDL_Renderer* renderer, void* data) {
 
     // SDL3 hat SDL_RenderDebugText
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderDebugText(renderer, 10, 10, score_text);
+    SDL_RenderDebugText(renderer, 150, 10, score_text);
 }
 
 // Event-Handler
