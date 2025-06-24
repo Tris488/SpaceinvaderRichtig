@@ -2,6 +2,8 @@
 #include "player.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "enemy.h"
+#include "health.h"
 
 static SDL_Texture* player_texture;
 static SDL_FRect spriteplayer_portion = {0, 1, 8, 8};
@@ -9,19 +11,21 @@ static SDL_Joystick* joystick = NULL;
 static SDL_JoystickID joystick_id = -1;
 int window_width, window_height;
 static Uint32 last_shot_time = 0;
-static Uint32 shot_cooldown = 200;
+static Uint32 shot_cooldown = 900;
 Position position = {0,0}; // Start at the bottom center of screen
 static float move_speed = 200.0f; // Movement speed
 
 // Function to handle joystick connection
 static void connect_joystick() {
-    // Count available joysticks - correct SDL3 function
-    int num_joysticks = SDL_GetJoysticks;
+    // Count available joysticks - SDL3 Version
+    int num_joysticks = 0;
+    SDL_JoystickID *joysticks = SDL_GetJoysticks(&num_joysticks);
+
     printf("Available joysticks: %d\n", num_joysticks);
 
-    if (num_joysticks > 0) {
+    if (num_joysticks > 0 && joysticks) {
         // Open the first available joystick
-        joystick = SDL_OpenJoystick(0);
+        joystick = SDL_OpenJoystick(joysticks[0]);
 
         if (joystick) {
             joystick_id = SDL_GetJoystickID(joystick);
@@ -33,6 +37,11 @@ static void connect_joystick() {
         } else {
             printf("Failed to open joystick: %s\n", SDL_GetError());
         }
+    }
+
+    // Wichtig: Speicher freigeben
+    if (joysticks) {
+        SDL_free(joysticks);
     }
 }
 
@@ -80,7 +89,7 @@ static void update(float delta_time, void* data) {
 
     // Keyboard controls
     Uint32 current_shot_time = SDL_GetTicks();
-    const Uint8 *keyboard_state = SDL_GetKeyboardState(NULL);
+    const bool *keyboard_state = SDL_GetKeyboardState(NULL);
 
     if (keyboard_state[SDL_SCANCODE_W] || keyboard_state[SDL_SCANCODE_UP]) {
         position.y -= move_speed * delta_time;
@@ -151,6 +160,23 @@ static void update(float delta_time, void* data) {
             }
         }
     }
+    SDL_FRect player_rect = {position.x, position.y, 20, 40};
+    Enemy* colliding_enemy = enemy_get_collision_with_player(&player_rect);
+
+    if (colliding_enemy) {
+        // Spieler wurde von Gegner getroffen
+        damage_player(1);
+        enemy_destroy(colliding_enemy); // Gegner wird zerstört
+
+        // Optional: Kurze Unverwundbarkeit nach Treffer
+        static Uint32 last_hit_time = 0;
+        Uint32 current_time = SDL_GetTicks();
+
+        if (current_time - last_hit_time > 1000) { // 1 Sekunde Unverwundbarkeit
+            last_hit_time = current_time;
+        }
+    }
+
 
     // Keep player within screen bounds
     if (position.x < 0) {

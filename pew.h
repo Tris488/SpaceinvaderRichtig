@@ -9,6 +9,12 @@
 #include <stdio.h>
 #include <stdbool.h>  // Für bool-Typ
 
+// Schuss-Typen
+typedef enum {
+    SHOT_TYPE_PLAYER,
+    SHOT_TYPE_ENEMY
+} ShotType;
+
 // Verbesserte ShotData-Struktur
 typedef struct {
     float x;          // X-Position
@@ -20,6 +26,7 @@ typedef struct {
     int id;           // Schuss-ID
     bool active;      // Ist der Schuss aktiv?
     bool should_remove; // Soll der Schuss entfernt werden?
+    ShotType type;    // Typ des Schusses
 } ShotData;
 
 Entity create_shot_entity(SDL_Renderer* renderer, float x, float y);
