@@ -8,5 +8,12 @@
 #include <SDL3_image/SDL_image.h>
 #include "entity.h"
 #include <SDL3/SDL_joystick.h>
+
 Entity init_health(SDL_Renderer* renderer);
+
+// Neue Funktionen für das Health-System
+void damage_player(int damage);
+int get_player_health(void);
+void set_player_health(int health);
+
 #endif //HEALTH_H

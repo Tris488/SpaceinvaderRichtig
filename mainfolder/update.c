@@ -4,6 +4,9 @@
 
 #include "update.h"
 #include "../pew.h"  // Für cleanup_inactive_shots
+#include "../enemy.h" // Für enemy types und functions
+
+// Enemy movement state
 
 void app_update(void *appstate) {
     if (!appstate) return;
@@ -17,6 +20,10 @@ void app_update(void *appstate) {
     if (state->delta_time > 0.1f) {
         state->delta_time = 0.1f;
     }
+
+    // Aufräumen inaktiver Entities
+    cleanup_inactive_shots();
+
 
     // Update alle Entities
     for (int i = 0; i < entities_count; i++) {

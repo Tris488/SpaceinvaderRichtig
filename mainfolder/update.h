@@ -7,5 +7,6 @@
 #include "wichitg.h"
 
 void app_update(void *appstate);
+void mark_inactive_shots_for_removal(void);
 
 #endif //UPDATE_H

@@ -1,6 +1,6 @@
 // pew.c - Korrigierte Version
 #include "pew.h"
-
+#include "enemy.h"
 // Texture für Schüsse
 static SDL_Texture* shot_texture = NULL;
 static SDL_FRect spriteshot = {0, 4, 15, 19};
@@ -23,18 +23,23 @@ static void update(float delta_time, void* data) {
     // Schuss-Bewegung
     shot->y -= shot->speed * delta_time;
 
-    // Debug-Ausgabe nur für diesen einen Schuss
-    if (shot->id % 10 == 1) { // Nur jeden 10. Schuss loggen, um Spam zu vermeiden
-        printf("Schuss #%d: y=%.2f → %.2f (delta_time: %.4f)\n",
-                shot->id, old_y, shot->y, delta_time);
+    // Kollision mit Gegnern prüfen
+    SDL_FRect bullet_rect = {shot->x, shot->y, 10, 20};
+    Enemy* hit_enemy = enemy_get_collision_with_bullet(&bullet_rect);
+
+    if (hit_enemy) {
+        // Gegner wurde getroffen
+        printf("Treffer! Gegner Typ %d getroffen\n", hit_enemy->type);
+        enemy_damage(hit_enemy, 1);
+        shot->active = false;
+        shot->should_remove = true;
+        return; // Wichtig: Return hier, damit der Schuss nicht weiter prüft
     }
+
 
     // Prüfe, ob der Schuss den Bildschirm verlassen hat
     if (shot->y < -20) {
-        printf("Schuss #%d verlässt Bildschirm\n", shot->id);
         shot->active = false;
-
-        // Markiere diese Entity zum Entfernen
         shot->should_remove = true;
     }
 }

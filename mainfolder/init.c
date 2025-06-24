@@ -1,7 +1,8 @@
 #include "init.h"
 #include <stdio.h>
-
+#include "../enemy_entity.h"
 #include "../health.h"
+#include "../gameover.h"
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     AppState *state = SDL_malloc(sizeof(AppState));
@@ -21,7 +22,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     // Enable joystick events
     SDL_SetJoystickEventsEnabled;
 
-    state->window = SDL_CreateWindow("Space Invaders", width, height, NULL);
+    state->window = SDL_CreateWindow("Space Invaders", width, height, 0);
     if (!state->window) {
         SDL_Log("Error creating window: %s", SDL_GetError());
         return SDL_APP_FAILURE;
@@ -37,11 +38,16 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
 
     entities[entities_count++] = init_map(state->renderer);
     printf("entities_count before init_player: %i\n", entities_count);
+    entities[entities_count++] = init_enemy_system(state->renderer);
+    printf("Enemy system initialized, entity count: %i\n", entities_count);
     entities[entities_count++] = init_player(state->renderer);
     printf("Player initialized, entity count: %i\n", entities_count);
     entities[entities_count++]=init_health(state->renderer);
     printf("health initialized, entity count: %i\n", entities_count);
+    entities[entities_count++] = init_gameover_system(state->renderer);
+    printf("Game Over system initialized, entity count: %i\n", entities_count);
     /*entities[entities_count++] = create_button_entity(state-> renderer);*/
+
 
     return SDL_APP_CONTINUE;
 }
