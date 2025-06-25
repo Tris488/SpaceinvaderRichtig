@@ -25,7 +25,7 @@ static void update(float delta_time, void* data) {
 
     // Kollision mit Gegnern prüfen
     SDL_FRect bullet_rect = {shot->x, shot->y, 10, 20};
-    Enemy* hit_enemy = enemy_get_collision_with_bullet(&bullet_rect);
+    Enemy* hit_enemy = collision_with_bullet(&bullet_rect);
 
     if (hit_enemy) {
         // Gegner wurde getroffen

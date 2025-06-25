@@ -5,20 +5,21 @@
 #include "health.h"
 #include "gameover.h"
 #include <stdio.h>
+#include "enemy.h"
 
 static SDL_Texture* health_texture = NULL;
-static int healthpoints = 3;
+int healthpoints = 3;
 
 typedef struct {
     float x, y;
 } HealthData;
 
 static void cleanup() {
-    // Textur wird mit dem Player geteilt, also nicht hier freigeben
+
 }
 
 static void handle_events(SDL_Event* event, void* data){
-    // Nichts zu tun
+
 }
 
 static void update(float delta_time, void* data) {
@@ -87,7 +88,7 @@ Entity init_health(SDL_Renderer* renderer) {
     printf("Initialisiere Health-System...\n");
 
     // Verwende das gleiche Spritesheet wie Player und Enemies
-    const char path[] = "C:\\Users\\tb\\CLionProjects\\Spaceinvaders\\pico8_invaders_sprites_LARGE.png";
+    const char path[] =  "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";
     health_texture = IMG_LoadTexture(renderer, path);
 
     if (!health_texture) {
