@@ -1,8 +1,8 @@
 #include "init.h"
 #include <stdio.h>
 #include "../enemy_entity.h"
-#include "../health.h"
 #include "../gameover.h"
+#include "../powerup.h"
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     AppState *state = SDL_malloc(sizeof(AppState));
@@ -40,6 +40,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     printf("entities_count before init_player: %i\n", entities_count);
     entities[entities_count++] = init_enemy_system(state->renderer);
     printf("Enemy system initialized, entity count: %i\n", entities_count);
+    entities[entities_count++] = init_powerup_system(state->renderer);
+    printf("Power-Up system initialized, entity count: %i\n", entities_count);
     entities[entities_count++] = init_player(state->renderer);
     printf("Player initialized, entity count: %i\n", entities_count);
     entities[entities_count++]=init_health(state->renderer);

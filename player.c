@@ -5,6 +5,7 @@
 #include "enemy.h"
 #include "health.h"
 #include "gameover.h"
+#include "powerup.h"
 static SDL_Texture* player_texture;
 static SDL_FRect spriteplayer_portion = {0, 1, 8, 8};
 static SDL_Joystick* joystick = NULL;
@@ -107,7 +108,8 @@ static void update(float delta_time, void* data) {
 
     // Shooting
     if (keyboard_state[SDL_SCANCODE_SPACE]) {
-        if (current_shot_time > last_shot_time + shot_cooldown) {
+        Uint32 effective_cooldown = (Uint32)(shot_cooldown * get_double_shoot_multiplier());
+        if (current_shot_time > last_shot_time + effective_cooldown) {
             if (entities_count < MAX_ENTITIES) {
                 printf("Spieler feuert Schuss ab: x=%.2f, y=%.2f\n", position.x, position.y);
 
@@ -162,8 +164,11 @@ static void update(float delta_time, void* data) {
         }
     }
     SDL_FRect player_rect = {position.x, position.y, 20, 40};
-    Enemy* colliding_enemy = enemy_get_collision_with_player(&player_rect);
-
+    Enemy* colliding_enemy = collision_with_player(&player_rect);
+    Powerup* collected = powerup_check_collision(&player_rect);
+    if (collected) {
+        printf("Double Shoot Power-Up collected!\n");
+    }
     if (colliding_enemy) {
         // Spieler wurde von Gegner getroffen
         damage_player(1);
@@ -203,7 +208,7 @@ static void render(SDL_Renderer* renderer, void* data) {
 }
 
 Entity init_player(SDL_Renderer* renderer) {
-    const char path[] = "C:\\Users\\tb\\CLionProjects\\Spaceinvaders\\pico8_invaders_sprites_LARGE.png";
+    const char path[] =  "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";
     player_texture = IMG_LoadTexture(renderer, path);
 
     if (!player_texture) {

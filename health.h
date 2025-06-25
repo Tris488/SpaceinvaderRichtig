@@ -12,6 +12,7 @@
 Entity init_health(SDL_Renderer* renderer);
 
 // Neue Funktionen für das Health-System
+extern int healthpoints;
 void damage_player(int damage);
 int get_player_health(void);
 void set_player_health(int health);

@@ -5,7 +5,7 @@
 #include <SDL3_image/SDL_image.h>
 #include "entity.h"
 #include "mainfolder/wichitg.h"
-
+#include "powerup.h"
 // Für fmaxf
 #ifndef fmaxf
 #define fmaxf(a,b) ((a) > (b) ? (a) : (b))
@@ -164,7 +164,7 @@ void enemy_init_system(SDL_Renderer* renderer) {
 
     // Lade die Enemy-Textur
     if (!enemy_texture) {
-        const char path[] = "C:\\Users\\tb\\CLionProjects\\Spaceinvaders\\pico8_invaders_sprites_LARGE.png";
+        const char path[] = "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";
         enemy_texture = IMG_LoadTexture(renderer, path);
         if (!enemy_texture) {
             printf("Failed to load enemy texture: %s\n", SDL_GetError());
@@ -240,7 +240,8 @@ void enemy_destroy(Enemy* enemy) {
 
     // Punkte zum Score hinzufuegen
     score_add(enemy->points);
-
+    powerup_on_enemy_killed(enemy->position.x + enemy->position.w/2,
+                           enemy->position.y + enemy->position.h/2);
     // Gegner deaktivieren
     enemy->active = false;
 
@@ -305,7 +306,7 @@ void enemy_render_all(SDL_Renderer* renderer) {
 }
 
 // Kollisionspruefung
-bool enemy_check_collision(Enemy* enemy, SDL_FRect* bullet_rect) {
+bool check_collision(Enemy* enemy, SDL_FRect* bullet_rect) {
     if (!enemy || !enemy->active || !bullet_rect) return false;
 
     return (enemy->position.x < bullet_rect->x + bullet_rect->w &&
@@ -314,9 +315,9 @@ bool enemy_check_collision(Enemy* enemy, SDL_FRect* bullet_rect) {
             enemy->position.y + enemy->position.h > bullet_rect->y);
 }
 
-Enemy* enemy_get_collision_with_bullet(SDL_FRect* bullet_rect) {
+Enemy* collision_with_bullet(SDL_FRect* bullet_rect) {
     for (int i = 0; i < MAX_ENEMIES; i++) {
-        if (enemies[i].active && enemy_check_collision(&enemies[i], bullet_rect)) {
+        if (enemies[i].active && check_collision(&enemies[i], bullet_rect)) {
             return &enemies[i];
         }
     }
@@ -324,11 +325,11 @@ Enemy* enemy_get_collision_with_bullet(SDL_FRect* bullet_rect) {
 }
 
 // Neue Funktion: Kollision mit Spieler pruefen
-Enemy* enemy_get_collision_with_player(SDL_FRect* player_rect) {
+Enemy* collision_with_player(SDL_FRect* player_rect) {
     if (!player_rect) return NULL;
 
     for (int i = 0; i < MAX_ENEMIES; i++) {
-        if (enemies[i].active && enemy_check_collision(&enemies[i], player_rect)) {
+        if (enemies[i].active && check_collision(&enemies[i], player_rect)) {
             return &enemies[i];
         }
     }
@@ -516,6 +517,8 @@ void wave_start_next(void) {
 void score_add(int points) {
     player_score += points;
 }
+
+
 
 int score_get_current(void) {
     return player_score;

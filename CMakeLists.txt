@@ -41,6 +41,8 @@ add_executable(SpaceinvadersRichtig1 WIN32 mainfolder/init.c
         enemy_entity.h
         gameover.c
         gameover.h
+        powerup.c
+        powerup.h
 )
 
 # Link to the actual SDL3 library.
