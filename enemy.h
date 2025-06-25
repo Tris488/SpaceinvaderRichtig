@@ -77,9 +77,9 @@ void enemy_update_all(float delta_time);
 void enemy_render_all(SDL_Renderer* renderer);
 
 // Kollision
-bool enemy_check_collision(Enemy* enemy, SDL_FRect* bullet_rect);
-Enemy* enemy_get_collision_with_bullet(SDL_FRect* bullet_rect);
-Enemy* enemy_get_collision_with_player(SDL_FRect* player_rect);
+bool check_collision(Enemy* enemy, SDL_FRect* bullet_rect);
+Enemy* collision_with_bullet(SDL_FRect* bullet_rect);
+Enemy* collision_with_player(SDL_FRect* player_rect);
 
 // Spieler-Funktionen (extern definiert)
 extern void damage_player(int damage);

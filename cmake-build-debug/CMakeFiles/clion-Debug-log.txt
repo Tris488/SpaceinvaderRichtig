@@ -135,6 +135,6 @@
 -- SDL3_image backends:
 -- - enabled:  stb bmp gif jpg lbm pcx png pnm qoi svg tga xcf xpm xv
 -- - disabled: imageio wic avif jxl tif webp
--- Configuring done (2.1s)
+-- Configuring done (1.1s)
 -- Generating done (0.4s)
 -- Build files have been written to: C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/cmake-build-debug

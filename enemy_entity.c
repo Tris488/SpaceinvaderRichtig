@@ -5,7 +5,8 @@
 #include "gameover.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "powerup.h"
+#include "enemy.h"
 // Entity-Wrapper für das Enemy-System
 typedef struct {
     int current_wave;
@@ -28,6 +29,7 @@ static void enemy_system_update(float delta_time, void* data) {
     // Starte erste Welle, falls noch nicht geschehen
     if (!enemy_system_data->wave_started) {
         wave_init(1);
+        powerup_on_wave_start(1);
         enemy_system_data->wave_started = true;
         enemy_system_data->current_wave = 1;
         printf("Erste Welle gestartet!\n");
@@ -50,6 +52,7 @@ static void enemy_system_update(float delta_time, void* data) {
 
         if (wave_delay > 2.0f) { // 2 Sekunden Pause
             wave_start_next();
+            powerup_on_wave_start(wave_get_current());
             enemy_system_data->current_wave = wave_get_current();
             wave_delay = 0;
             printf("Nächste Welle %d startet!\n", enemy_system_data->current_wave);
