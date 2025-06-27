@@ -75,6 +75,9 @@ void damage_player(int damage) {
 int get_player_health(void) {
     return healthpoints;
 }
+void get_bonus(int value) {
+    healthpoints+=value;
+}
 
 // Leben setzen (fuer Reset)
 void set_player_health(int health) {
