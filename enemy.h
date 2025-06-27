@@ -75,6 +75,7 @@ void enemy_damage(Enemy* enemy, int damage);
 void enemy_destroy(Enemy* enemy);
 void enemy_update_all(float delta_time);
 void enemy_render_all(SDL_Renderer* renderer);
+void destroy_all_enemies();
 
 // Kollision
 bool check_collision(Enemy* enemy, SDL_FRect* bullet_rect);

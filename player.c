@@ -15,7 +15,8 @@ static Uint32 last_shot_time = 0;
 static Uint32 shot_cooldown = 900;
 Position position = {0,0}; // Start at the bottom center of screen
 static float move_speed = 200.0f; // Movement speed
-
+static bool e_key_was_pressed = false;
+static bool b_button_was_pressed = false;
 // Function to handle joystick connection
 static void connect_joystick() {
     // Count available joysticks - SDL3 Version
@@ -135,8 +136,16 @@ static void update(float delta_time, void* data) {
             }
         }
     }
-    if (keyboard_state[SDL_SCANCODE_E]) {
-        bomb_got_used();
+    if (keyboard_state[SDL_SCANCODE_E] && !e_key_was_pressed) {
+
+        if (get_bomb_count() > 0) {
+            bomb_got_used();
+            destroy_all_enemies();
+
+            printf("Bombe gezündet! Verbleibend: %d\n", get_bomb_count());
+        } else {
+            printf("Keine Bomben verfügbar!\n");
+        }
     }
 
     // Joystick controls
@@ -174,9 +183,18 @@ static void update(float delta_time, void* data) {
                 }
             }
         }
-        if (SDL_GetJoystickButton(joystick, 1)) {
-            bomb_got_used();
+        bool b_button_pressed = SDL_GetJoystickButton(joystick, 1);
+
+        if (b_button_pressed && !b_button_was_pressed) {
+            if (get_bomb_count() > 0) {
+                bomb_got_used();
+                destroy_all_enemies();
+                printf("Bombe gezündet (Joystick)! Verbleibend: %d\n", get_bomb_count());
+            }
         }
+
+        b_button_was_pressed = b_button_pressed;
+
     }
 
     SDL_FRect player_rect = {position.x, position.y, 20, 40};

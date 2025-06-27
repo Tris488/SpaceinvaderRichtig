@@ -52,6 +52,8 @@ void powerup_on_enemy_killed(float x, float y);
 float get_speed_multplier(void);
 bool is_speed_active();
 void bomb_got_used();
+int get_bomb_count();
+
 
 
 
