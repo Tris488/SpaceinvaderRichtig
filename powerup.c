@@ -262,8 +262,12 @@ Powerup* powerup_check_collision(SDL_FRect* player_rect) {
 }
 
 void bomb_got_used() {
-    bombs--;
+    if (bombs > 0) {
+        bombs--;
+        printf("Bombe verwendet! Verbleibend: %d\n", bombs);
+    }
 }
+
 bool is_speed_active(void) {
     return speed_active;
 }
@@ -279,7 +283,9 @@ float get_speed_multplier(void) {
 bool is_double_shoot_active(void) {
     return double_shoot_active;
 }
-
+int get_bomb_count() {
+    return bombs;
+}
 float get_double_shoot_multiplier(void) {
     if (double_shoot_active) {
         return 1.0f / powerup_definitions[POWERUP_DOUBLE_SHOOT].effect_strength;

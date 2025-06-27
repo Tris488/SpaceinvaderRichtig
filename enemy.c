@@ -250,7 +250,11 @@ void enemy_destroy(Enemy* enemy) {
         current_wave.enemies_remaining--;
     }
 }
-
+void destroy_all_enemies(Enemy* enemy) {
+    for (int i=0; i<MAX_ENEMIES; i++) {
+        enemy_destroy(enemy);
+    }
+}
 // Alle Gegner aktualisieren
 void enemy_update_all(float delta_time) {
     for (int i = 0; i < MAX_ENEMIES; i++) {
