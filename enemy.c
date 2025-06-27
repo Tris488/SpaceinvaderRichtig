@@ -250,9 +250,12 @@ void enemy_destroy(Enemy* enemy) {
         current_wave.enemies_remaining--;
     }
 }
-void destroy_all_enemies(Enemy* enemy) {
-    for (int i=0; i<MAX_ENEMIES; i++) {
-        enemy_destroy(enemy);
+void destroy_all_enemies(void) {
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+        if (enemies[i].active) {
+            // Zerstöre jeden aktiven Gegner
+            enemy_destroy(&enemies[i]);
+        }
     }
 }
 // Alle Gegner aktualisieren
