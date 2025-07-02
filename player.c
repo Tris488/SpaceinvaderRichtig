@@ -243,8 +243,7 @@ static void render(SDL_Renderer* renderer, void* data) {
 
 
 Entity init_player(SDL_Renderer* renderer) {
-    const char path[] =  "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";
-    player_texture = IMG_LoadTexture(renderer, path);
+    player_texture = IMG_LoadTexture(renderer, "pictures\\pico8_invaders_sprites_LARGE.png");
 
     if (!player_texture) {
         printf("Failed to load player texture: %s\n", SDL_GetError());

@@ -164,8 +164,7 @@ void enemy_init_system(SDL_Renderer* renderer) {
 
     // Lade die Enemy-Textur
     if (!enemy_texture) {
-        const char path[] = "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";
-        enemy_texture = IMG_LoadTexture(renderer, path);
+        enemy_texture = IMG_LoadTexture(renderer, "pictures\\pico8_invaders_sprites_LARGE.png");
         if (!enemy_texture) {
             printf("Failed to load enemy texture: %s\n", SDL_GetError());
         }

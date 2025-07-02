@@ -84,8 +84,7 @@ Entity create_shot_entity(SDL_Renderer* renderer, float x, float y) {
 
     // Textur laden, falls noch nicht geschehen
     if (!shot_texture) {
-        const char path[] = "C:\\Users\\tb\\CLionProjects\\Spaceinvaders\\shot.png";
-        shot_texture = IMG_LoadTexture(renderer, path);
+        shot_texture = IMG_LoadTexture(renderer, "pictures\\shot.png");
         if (!shot_texture) {
             printf("Fehler: Konnte Schuss-Textur nicht laden: %s\n", SDL_GetError());
             Entity empty = {0};

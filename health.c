@@ -90,9 +90,8 @@ void set_player_health(int health) {
 Entity init_health(SDL_Renderer* renderer) {
     printf("Initialisiere Health-System...\n");
 
-    // Verwende das gleiche Spritesheet wie Player und Enemies
-    const char path[] =  "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";
-    health_texture = IMG_LoadTexture(renderer, path);
+    // Verwende das gleiche Spritesheet wie Player und Enemies;
+    health_texture = IMG_LoadTexture(renderer, "pictures\\pico8_invaders_sprites_LARGE.png");
 
     if (!health_texture) {
         printf("FEHLER: Konnte pico8_invaders_sprites_LARGE.png nicht laden!\n");

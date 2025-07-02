@@ -75,8 +75,7 @@ static void init_powerups(SDL_Renderer* renderer) {
 
     // Textur laden (gleiche wie Enemies)
     if (!powerup_texture) {
-        const char path[] = "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";
-        powerup_texture = IMG_LoadTexture(renderer, path);
+        powerup_texture = IMG_LoadTexture(renderer,"pictures\\pico8_invaders_sprites_LARGE.png");
         if (!powerup_texture) {
             printf("Failed to load powerup texture: %s\n", SDL_GetError());
         } else {
