@@ -4,7 +4,10 @@ project(SpaceinvadersRichtig1 C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
+set(PICS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/pictures")
 
+# Kopieren von Assets in Build-Verzeichnis:
+file(COPY ${PICS_DIR} DESTINATION ${CMAKE_BINARY_DIR})
 # This assumes the SDL source is available in vendored/SDL x
 add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 add_subdirectory(vendored/SDL_image EXCLUDE_FROM_ALL)

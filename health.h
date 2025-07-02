@@ -16,5 +16,6 @@ extern int healthpoints;
 void damage_player(int damage);
 int get_player_health(void);
 void set_player_health(int health);
+void get_bonus(int value);
 
 #endif //HEALTH_H

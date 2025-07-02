@@ -28,7 +28,7 @@ static void render(SDL_Renderer* renderer) {
 }
 Entity init_map(SDL_Renderer* renderer) {
     printf("init_map wird aufgerufen\n");
-    const char path[]="C:\\Users\\tb\\CLionProjects\\Spaceinvaders\\SpaceInvaders_Background.bmp";
+    const char path[]="pictures/SpaceInvaders_Background.bmp";
     map_texture = IMG_LoadTexture(renderer,path);
 
     Entity map={

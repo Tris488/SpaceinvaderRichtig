@@ -15,7 +15,8 @@ static Uint32 last_shot_time = 0;
 static Uint32 shot_cooldown = 900;
 Position position = {0,0}; // Start at the bottom center of screen
 static float move_speed = 200.0f; // Movement speed
-
+static bool e_key_was_pressed = false;
+static bool b_button_was_pressed = false;
 // Function to handle joystick connection
 static void connect_joystick() {
     // Count available joysticks - SDL3 Version
@@ -80,6 +81,8 @@ static void handle_events(SDL_Event* event, void* data) {
 }
 
 static void update(float delta_time, void* data) {
+    Uint32 effective_cooldown;
+    float effective_movespeed;
     if (is_game_over()) return;
     // data ist der AppState pointer
     if (!data) return;
@@ -94,21 +97,25 @@ static void update(float delta_time, void* data) {
     const bool *keyboard_state = SDL_GetKeyboardState(NULL);
 
     if (keyboard_state[SDL_SCANCODE_W] || keyboard_state[SDL_SCANCODE_UP]) {
-        position.y -= move_speed * delta_time;
+        effective_movespeed=move_speed*get_speed_multplier();
+        position.y -= effective_movespeed * delta_time;
     }
     if (keyboard_state[SDL_SCANCODE_S] || keyboard_state[SDL_SCANCODE_DOWN]) {
-        position.y += move_speed * delta_time;
+        effective_movespeed=move_speed*get_speed_multplier();
+        position.y += effective_movespeed * delta_time;
     }
     if (keyboard_state[SDL_SCANCODE_A] || keyboard_state[SDL_SCANCODE_LEFT]) {
-        position.x -= move_speed * delta_time;
+        effective_movespeed=move_speed*get_speed_multplier();
+        position.x -= effective_movespeed * delta_time;
     }
     if (keyboard_state[SDL_SCANCODE_D] || keyboard_state[SDL_SCANCODE_RIGHT]) {
-        position.x += move_speed * delta_time;
+        effective_movespeed=move_speed*get_speed_multplier();
+        position.x += effective_movespeed * delta_time;
     }
 
     // Shooting
     if (keyboard_state[SDL_SCANCODE_SPACE]) {
-        Uint32 effective_cooldown = (Uint32)(shot_cooldown * get_double_shoot_multiplier());
+        effective_cooldown = (Uint32)(shot_cooldown * get_double_shoot_multiplier());
         if (current_shot_time > last_shot_time + effective_cooldown) {
             if (entities_count < MAX_ENTITIES) {
                 printf("Spieler feuert Schuss ab: x=%.2f, y=%.2f\n", position.x, position.y);
@@ -129,29 +136,43 @@ static void update(float delta_time, void* data) {
             }
         }
     }
+    if (keyboard_state[SDL_SCANCODE_E] && !e_key_was_pressed) {
+
+        if (get_bomb_count() > 0) {
+            bomb_got_used();
+            destroy_all_enemies();
+
+            printf("Bombe gezündet! Verbleibend: %d\n", get_bomb_count());
+        } else {
+            printf("Keine Bomben verfügbar!\n");
+        }
+    }
 
     // Joystick controls
     if (joystick) {
         Sint16 x_axis = SDL_GetJoystickAxis(joystick, 0);
         Sint16 y_axis = SDL_GetJoystickAxis(joystick, 1);
 
-        int deadzone = 8000; // Adjust deadzone as needed
+        int deadzone = 7600; // Adjust deadzone as needed
 
         // Apply horizontal movement if beyond deadzone
         if (abs(x_axis) > deadzone) {
+            effective_movespeed=move_speed*get_speed_multplier();
             float normalized_x = (float)x_axis / 32767.0f;
-            position.x += normalized_x * move_speed * delta_time;
+            position.x += normalized_x * effective_movespeed * delta_time;
         }
 
         // Apply vertical movement if beyond deadzone
         if (abs(y_axis) > deadzone) {
+            effective_movespeed=move_speed*get_speed_multplier();
             float normalized_y = (float)y_axis / 32767.0f;
-            position.y += normalized_y * move_speed * delta_time;
+            position.y += normalized_y * effective_movespeed * delta_time;
         }
 
         // Check joystick buttons for shooting
         if (SDL_GetJoystickButton(joystick, 0)) { // A button
-            if (current_shot_time > last_shot_time + shot_cooldown) {
+            effective_cooldown = (Uint32)(shot_cooldown * get_double_shoot_multiplier());
+            if (current_shot_time > last_shot_time + effective_cooldown) {
                 if (entities_count < MAX_ENTITIES) {
                     Entity new_shot = create_shot_entity(renderer, position.x + 10, position.y - 20);
                     if (new_shot.data != NULL) {
@@ -162,7 +183,20 @@ static void update(float delta_time, void* data) {
                 }
             }
         }
+        bool b_button_pressed = SDL_GetJoystickButton(joystick, 1);
+
+        if (b_button_pressed && !b_button_was_pressed) {
+            if (get_bomb_count() > 0) {
+                bomb_got_used();
+                destroy_all_enemies();
+                printf("Bombe gezündet (Joystick)! Verbleibend: %d\n", get_bomb_count());
+            }
+        }
+
+        b_button_was_pressed = b_button_pressed;
+
     }
+
     SDL_FRect player_rect = {position.x, position.y, 20, 40};
     Enemy* colliding_enemy = collision_with_player(&player_rect);
     Powerup* collected = powerup_check_collision(&player_rect);
@@ -206,6 +240,7 @@ static void render(SDL_Renderer* renderer, void* data) {
     SDL_SetTextureScaleMode(player_texture, SDL_SCALEMODE_NEAREST);
     SDL_RenderTexture(renderer, player_texture, &spriteplayer_portion, &player_position);
 }
+
 
 Entity init_player(SDL_Renderer* renderer) {
     const char path[] =  "C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\pico8_invaders_sprites_LARGE.png";

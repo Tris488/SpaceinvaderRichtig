@@ -16,7 +16,7 @@ static Enemy enemies[MAX_ENEMIES];
 static Wave current_wave;
 static int player_score = 0;
 static SDL_Texture* enemy_texture = NULL;
-
+static effective_points=0;
 // Gegner-Definitionen
 typedef struct {
     EnemyType type;
@@ -250,7 +250,14 @@ void enemy_destroy(Enemy* enemy) {
         current_wave.enemies_remaining--;
     }
 }
-
+void destroy_all_enemies(void) {
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+        if (enemies[i].active) {
+            // Zerstöre jeden aktiven Gegner
+            enemy_destroy(&enemies[i]);
+        }
+    }
+}
 // Alle Gegner aktualisieren
 void enemy_update_all(float delta_time) {
     for (int i = 0; i < MAX_ENEMIES; i++) {
@@ -515,7 +522,8 @@ void wave_start_next(void) {
 
 // Score-System
 void score_add(int points) {
-    player_score += points;
+    effective_points= points * (int) get_multiplier();
+    player_score += effective_points;
 }
 
 

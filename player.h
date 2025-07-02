@@ -14,4 +14,5 @@ typedef struct {
     float x,y;
 }Position;
 Entity init_player(SDL_Renderer* renderer);
+void get_speed(int value);
 #endif //PLAYER_H
