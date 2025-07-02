@@ -325,7 +325,7 @@ bool is_multiplier_active(void) {
 }
 float get_multiplier(void) {
     if (multiplier_active) {
-        return powerups[POWERUP_MULTIPLIER].effect_strength;
+        return powerup_definitions[POWERUP_MULTIPLIER].effect_strength;
     }
     else {
         return 1.0f;
