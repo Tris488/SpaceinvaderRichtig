@@ -3,6 +3,7 @@
 
 #include <SDL3/SDL.h>
 #include <stdbool.h>
+#include "powerup.h"
 
 // Maximale Anzahl aktiver Gegner
 #define MAX_ENEMIES 100
