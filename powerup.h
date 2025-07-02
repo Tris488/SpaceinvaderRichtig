@@ -15,6 +15,7 @@ typedef enum {
     POWERUP_HEART,
     POWERUP_SPEED,
     POWERUP_BOMB,
+    POWERUP_MULTIPLIER,
     POWERUP_TYPE_COUNT
 } PowerupType;
 
@@ -53,7 +54,7 @@ float get_speed_multplier(void);
 bool is_speed_active();
 void bomb_got_used();
 int get_bomb_count();
-
+float get_multiplier(void);
 
 
 

@@ -16,7 +16,7 @@ static Enemy enemies[MAX_ENEMIES];
 static Wave current_wave;
 static int player_score = 0;
 static SDL_Texture* enemy_texture = NULL;
-
+static effective_points=0;
 // Gegner-Definitionen
 typedef struct {
     EnemyType type;
@@ -522,7 +522,8 @@ void wave_start_next(void) {
 
 // Score-System
 void score_add(int points) {
-    player_score += points;
+    effective_points= points * (int) get_multiplier();
+    player_score += effective_points;
 }
 
 

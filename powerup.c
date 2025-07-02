@@ -15,7 +15,8 @@ static bool speed_active=false;
 static int bombs=0;
 static int powerups_spawned_this_wave = 0;
 static int current_wave = 0;
-
+static bool multiplier_active=false;
+static float multiplier_timer=0.0f;
 
 // Power-Up Definitionen
 
@@ -35,7 +36,7 @@ static const PowerupDefinition powerup_definitions[POWERUP_TYPE_COUNT] = {
         .duration = 0,
         .effect_strength = 1.0f,
         .fall_speed = 35.0f,
-        .spawn_chance = 00.0f
+        .spawn_chance = 0.0f
     },
     [POWERUP_SPEED]={
         .type = POWERUP_SPEED,
@@ -51,7 +52,15 @@ static const PowerupDefinition powerup_definitions[POWERUP_TYPE_COUNT] = {
         .duration = 0.0f,
         .effect_strength = 1.0f,
         .fall_speed = 30.0f,
-        .spawn_chance = 100.0f
+        .spawn_chance = 00.0f
+    },
+    [POWERUP_MULTIPLIER]={
+        .type=POWERUP_MULTIPLIER,
+        .sprite_rect = {43,66,12,9},
+        .duration = 10.0f,
+        .effect_strength = 2.0f,
+        .fall_speed=25.0f,
+        .spawn_chance=100.0f
     }
 };
 
@@ -143,6 +152,13 @@ static void update(float delta_time, void* data) {
             printf("Double Shoot expired\n");
         }
     }
+    if (multiplier_active) {
+        multiplier_timer -= delta_time;
+        if (multiplier_timer<=0) {
+            multiplier_active=false;
+
+        }
+    }
 
     // Update alle Power-Ups
     for (int i = 0; i < MAX_POWERUPS; i++) {
@@ -187,6 +203,12 @@ static void render(SDL_Renderer* renderer, void* data) {
         SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
         char timer_text[64];
         snprintf(timer_text, sizeof(timer_text), "Speed: %.1fs", speed_timer);
+        SDL_RenderDebugText(renderer, 10, 80, timer_text);
+    }
+    if (multiplier_active) {
+        SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+        char timer_text[64];
+        snprintf(timer_text, sizeof(timer_text), "Multiplier x2: %.1fs", multiplier_timer);
         SDL_RenderDebugText(renderer, 10, 80, timer_text);
     }
     if (bombs>=1) {
@@ -250,6 +272,9 @@ Powerup* powerup_check_collision(SDL_FRect* player_rect) {
                     case POWERUP_BOMB:
                         bombs++;
                     break;
+                    case POWERUP_MULTIPLIER:
+                        multiplier_active=true;
+                        multiplier_timer=powerups[i].duration;
                 }
 
                 // Deaktiviere Power-Up
@@ -283,6 +308,7 @@ float get_speed_multplier(void) {
 bool is_double_shoot_active(void) {
     return double_shoot_active;
 }
+
 int get_bomb_count() {
     return bombs;
 }
@@ -294,7 +320,17 @@ float get_double_shoot_multiplier(void) {
         return 1.0f;
     }
 }
-
+bool is_multiplier_active(void) {
+    return multiplier_active;
+}
+float get_multiplier(void) {
+    if (multiplier_active) {
+        return powerups[POWERUP_MULTIPLIER].effect_strength;
+    }
+    else {
+        return 1.0f;
+    }
+}
 // Wave Callbacks
 void powerup_on_wave_start(int wave_number) {
     current_wave = wave_number;
