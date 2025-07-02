@@ -28,7 +28,7 @@ static const PowerupDefinition powerup_definitions[POWERUP_TYPE_COUNT] = {
         .duration = 5.0f,
         .effect_strength = 4.0f,
         .fall_speed = 30.0f,
-        .spawn_chance =0.0f
+        .spawn_chance =17.0f
     },
     [POWERUP_HEART]={
         .type = POWERUP_HEART,
@@ -36,7 +36,7 @@ static const PowerupDefinition powerup_definitions[POWERUP_TYPE_COUNT] = {
         .duration = 0,
         .effect_strength = 1.0f,
         .fall_speed = 35.0f,
-        .spawn_chance = 0.0f
+        .spawn_chance = 11.0f
     },
     [POWERUP_SPEED]={
         .type = POWERUP_SPEED,
@@ -44,7 +44,7 @@ static const PowerupDefinition powerup_definitions[POWERUP_TYPE_COUNT] = {
         .duration = 8.0f,
         .effect_strength = 1.8f,
         .fall_speed = 30.0f,
-        .spawn_chance = 0.0f
+        .spawn_chance = 28.5f
     },
     [POWERUP_BOMB]={
         .type = POWERUP_BOMB,
@@ -52,7 +52,7 @@ static const PowerupDefinition powerup_definitions[POWERUP_TYPE_COUNT] = {
         .duration = 0.0f,
         .effect_strength = 1.0f,
         .fall_speed = 30.0f,
-        .spawn_chance = 00.0f
+        .spawn_chance = 05.0f
     },
     [POWERUP_MULTIPLIER]={
         .type=POWERUP_MULTIPLIER,
@@ -60,7 +60,7 @@ static const PowerupDefinition powerup_definitions[POWERUP_TYPE_COUNT] = {
         .duration = 10.0f,
         .effect_strength = 2.0f,
         .fall_speed=25.0f,
-        .spawn_chance=100.0f
+        .spawn_chance=38.5f
     }
 };
 
@@ -346,14 +346,14 @@ void powerup_on_wave_start(int wave_number) {
 
 void powerup_on_enemy_killed(float x, float y) {
     // Nur ab Welle 2
-    if (current_wave < 1) return;
+    if (current_wave < 2) return;
 
     // Max 2 Power-Ups pro Welle
     if (powerups_spawned_this_wave >= 2) return;
 
     // Zufaellige Chance (10% pro getoeteten Gegner)
-    int chance = 100; //rand() % 100;
-    if (chance < 1000) {
+    int chance = rand() % 100;
+    if (chance < 10) {
         powerup_spawn(x, y);
         powerups_spawned_this_wave++;
         printf("Power-Up %d/%d spawned this wave\n", powerups_spawned_this_wave, 2);

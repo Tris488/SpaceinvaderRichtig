@@ -16,7 +16,7 @@ static Enemy enemies[MAX_ENEMIES];
 static Wave current_wave;
 static int player_score = 0;
 static SDL_Texture* enemy_texture = NULL;
-static effective_points=0;
+static int effective_points=0;
 // Gegner-Definitionen
 typedef struct {
     EnemyType type;

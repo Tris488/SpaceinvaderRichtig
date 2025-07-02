@@ -33,6 +33,10 @@
 
 /* #undef SDL_PLATFORM_PRIVATE */
 
+#ifdef SDL_PLATFORM_PRIVATE
+#include "SDL_begin_config_private.h"
+#endif
+
 #define HAVE_GCC_ATOMICS 1
 /* #undef HAVE_GCC_SYNC_LOCK_TEST_AND_SET */
 
@@ -368,6 +372,8 @@
 /* #undef SDL_TIME_N3DS */
 /* #undef SDL_TIME_NGAGE */
 
+/* #undef SDL_TIME_PRIVATE */
+
 /* Enable various timer systems */
 /* #undef SDL_TIMER_HAIKU */
 /* #undef SDL_TIMER_UNIX */
@@ -471,6 +477,8 @@
 #define SDL_GPU_VULKAN 1
 /* #undef SDL_GPU_METAL */
 
+/* #undef SDL_GPU_PRIVATE */
+
 /* Enable system power support */
 /* #undef SDL_POWER_ANDROID */
 /* #undef SDL_POWER_LINUX */
@@ -504,6 +512,8 @@
 
 /* Enable system storage support */
 #define SDL_STORAGE_STEAM 1
+
+/* #undef SDL_STORAGE_PRIVATE */
 
 /* Enable system FSops support */
 /* #undef SDL_FSOPS_POSIX */
