@@ -11,11 +11,11 @@ static void handle_events(SDL_Event* event, void* data)
 
 }
 
-static void update(float delta_time) {
+static void update(float delta_time, void *data) {
 
 }
 
-static void render(SDL_Renderer* renderer) {
+static void render(SDL_Renderer* renderer, void *data) {
     int window_width, window_height;
 
     SDL_GetCurrentRenderOutputSize(renderer, &window_width, &window_height);
@@ -28,7 +28,7 @@ static void render(SDL_Renderer* renderer) {
 }
 Entity init_map(SDL_Renderer* renderer) {
     printf("init_map wird aufgerufen\n");
-    const char path[]="pictures/SpaceInvaders_Background.bmp";
+    const char path[]="C:\\Users\\tb\\CLionProjects\\SpaceinvaderRichtig1\\pictures\\SpaceInvaders_Background.bmp";
     map_texture = IMG_LoadTexture(renderer,path);
 
     Entity map={
