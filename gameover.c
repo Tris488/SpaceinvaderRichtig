@@ -7,6 +7,7 @@
 #include "enemy.h"
 #include "health.h"
 #include "powerup.h"
+#include "joystick_manager.h"  // NEU: Joystick-Manager einbinden
 
 // Globale Variablen
 static bool game_over = false;
@@ -15,6 +16,7 @@ static SDL_Texture* font_texture = NULL;
 static bool restart_requested = false;
 static HighscoreEntry highscores[MAX_HIGHSCORES];
 static bool highscores_loaded = false;
+static char current_char = 'A';  // Initialisiert für Joystick-Eingabe
 
 // Eingabe für neuen Highscore
 static bool entering_name = false;
@@ -168,6 +170,9 @@ HighscoreEntry* get_highscores(void) {
 
 // Update-Funktion
 static void update(float delta_time, void* data) {
+    // NEU: Joystick updaten
+    joystick_update();
+
     if (!game_over) return;
 
     // Prüfe ob Spieler einen neuen Highscore hat (nur einmal!)
@@ -177,9 +182,48 @@ static void update(float delta_time, void* data) {
             player_final_score = score_get_current();
             memset(player_name, 0, sizeof(player_name));
             name_cursor = 0;
+            current_char = 'A';  // Reset Buchstabe
             printf("Neuer Highscore! Bitte Namen eingeben.\n");
         }
         score_checked = true;  // Setze Flag IMMER, auch wenn kein Highscore
+    }
+
+    // Joystick-Namenseingabe
+    if (game_over && entering_name && joystick_is_connected()) {
+        // Zeitverzögerung für Buchstabenwechsel
+        static float input_delay = 0.0f;
+        input_delay -= delta_time;
+
+        if (input_delay <= 0.0f) {
+            float axis_x = joystick_get_axis_normalized(0);  // Links/Rechts
+            float axis_y = joystick_get_axis_normalized(1);  // Hoch/Runter
+
+            // Hoch/Runter = Buchstaben wechseln
+            if (axis_y < -0.5f) {  // Stick nach oben
+                current_char++;
+                if (current_char > 'Z') current_char = 'A';
+                input_delay = 0.2f;  // 200ms Verzögerung
+            }
+            else if (axis_y > 0.5f) {  // Stick nach unten
+                current_char--;
+                if (current_char < 'A') current_char = 'Z';
+                input_delay = 0.2f;
+            }
+
+            // Links/Rechts = Cursor bewegen oder Zeichen hinzufügen
+            if (axis_x > 0.5f && name_cursor < MAX_NAME_LENGTH) {  // Rechts = Zeichen hinzufügen
+                player_name[name_cursor] = current_char;
+                name_cursor++;
+                player_name[name_cursor] = '\0';
+                current_char = 'A';  // Reset auf 'A'
+                input_delay = 0.3f;
+            }
+            else if (axis_x < -0.5f && name_cursor > 0) {  // Links = Zeichen löschen
+                name_cursor--;
+                player_name[name_cursor] = '\0';
+                input_delay = 0.3f;
+            }
+        }
     }
 
     // Neustart-Anfrage verarbeiten
@@ -219,21 +263,53 @@ static void render(SDL_Renderer* renderer, void* data) {
         SDL_FRect input_box = {250, 300, 300, 40};
         SDL_RenderRect(renderer, &input_box);
 
-        // Eingegebenen Namen anzeigen
-        if (strlen(player_name) > 0) {
-            SDL_RenderDebugText(renderer, 260, 310, player_name);
+        // Text anzeigen
+        if (joystick_is_connected() && name_cursor < MAX_NAME_LENGTH) {
+            // Erstelle eine temporäre Anzeige mit dem aktuellen Buchstaben
+            char display_text[MAX_NAME_LENGTH + 2];
+            strcpy(display_text, player_name);
+            display_text[name_cursor] = current_char;
+            display_text[name_cursor + 1] = '\0';
+
+            // Zeige alles bis zum aktuellen Buchstaben normal
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            if (name_cursor > 0) {
+                char saved_part[MAX_NAME_LENGTH + 1];
+                strncpy(saved_part, display_text, name_cursor);
+                saved_part[name_cursor] = '\0';
+                SDL_RenderDebugText(renderer, 260, 310, saved_part);
+            }
+
+            // Zeige den aktuellen Buchstaben in gelb
+            int current_x = 260 + name_cursor * 15;
+            SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+            char current_str[2] = {current_char, '\0'};
+            SDL_RenderDebugText(renderer, current_x, 310, current_str);
+        } else {
+            // Tastatur: Zeige nur eingegebenen Namen
+            if (strlen(player_name) > 0) {
+                SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+                SDL_RenderDebugText(renderer, 260, 310, player_name);
+            }
         }
 
-        // Cursor
-        if ((SDL_GetTicks() / 500) % 2 == 0) {
+        // Cursor (nur bei Tastatur)
+        if (!joystick_is_connected() && (SDL_GetTicks() / 500) % 2 == 0) {
             int cursor_x = 260 + name_cursor * 15;
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             SDL_RenderLine(renderer, cursor_x, 310, cursor_x, 330);
         }
 
         // Anweisungen
-        SDL_RenderDebugText(renderer, 200, 400, "ENTER - Bestaetigen");
-        SDL_RenderDebugText(renderer, 200, 430, "BACKSPACE - Loeschen");
+        if (joystick_is_connected()) {
+            SDL_RenderDebugText(renderer, 200, 400, "TRIGGER - Bestaetigen");
+            SDL_RenderDebugText(renderer, 200, 430, "DAUMEN - Abbrechen");
+            SDL_RenderDebugText(renderer, 200, 460, "STICK: Hoch/Runter = Buchstabe");
+            SDL_RenderDebugText(renderer, 200, 490, "STICK: Rechts = Hinzufuegen, Links = Loeschen");
+        } else {
+            SDL_RenderDebugText(renderer, 200, 400, "ENTER - Bestaetigen");
+            SDL_RenderDebugText(renderer, 200, 430, "BACKSPACE - Loeschen");
+        }
     } else {
         // Game Over Bildschirm mit Highscores
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -274,8 +350,13 @@ static void render(SDL_Renderer* renderer, void* data) {
 
         // Neustart-Option
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDebugText(renderer, 250, 500, "ENTER - Neues Spiel");
-        SDL_RenderDebugText(renderer, 250, 530, "ESC - Beenden");
+        if (joystick_is_connected()) {
+            SDL_RenderDebugText(renderer, 250, 500, "TRIGGER - Neues Spiel");
+            SDL_RenderDebugText(renderer, 250, 530, "BUTTON 7 - Beenden");
+        } else {
+            SDL_RenderDebugText(renderer, 250, 500, "ENTER - Neues Spiel");
+            SDL_RenderDebugText(renderer, 250, 530, "ESC - Beenden");
+        }
     }
 }
 
@@ -283,6 +364,51 @@ static void render(SDL_Renderer* renderer, void* data) {
 static void handle_events(SDL_Event* event, void* data) {
     if (!game_over) return;
 
+    // NEU: Joystick-Events an Manager weiterleiten
+    joystick_handle_event(event);
+
+    // NEU: Joystick-Button-Events behandeln
+    if (event->type == 0x603) {  // SDL_EVENT_JOYSTICK_BUTTON_DOWN
+        if (joystick_is_connected()) {
+            int button = event->jbutton.button;
+            printf("[GameOver] Joystick Button %d gedrückt\n", button);
+
+            if (entering_name) {
+                // Trigger (Button 0): Name bestätigen
+                if (button == 0 && strlen(player_name) > 0 && !processing_input) {
+                    processing_input = true;
+                    add_highscore(player_name, player_final_score);
+                    entering_name = false;
+                    processing_input = false;
+                    printf("Highscore gespeichert: %s - %d\n", player_name, player_final_score);
+                }
+                // Daumen-Button (Button 1): Abbrechen
+                else if (button == 1) {
+                    entering_name = false;
+                    score_checked = true;
+                    memset(player_name, 0, sizeof(player_name));
+                    name_cursor = 0;
+                    printf("Highscore-Eingabe abgebrochen\n");
+                }
+            }
+            else {
+                // Trigger (Button 0): Neustart
+                if (button == 0) {
+                    restart_requested = true;
+                    printf("Neustart angefordert (Joystick)\n");
+                }
+                // Button 7 (Index 6): Beenden
+                else if (button == 6) {
+                    SDL_Event quit_event;
+                    quit_event.type = SDL_EVENT_QUIT;
+                    SDL_PushEvent(&quit_event);
+                    printf("Spiel beenden (Joystick)\n");
+                }
+            }
+        }
+    }
+
+    // Keyboard-Events (bestehender Code)
     if (event->type == SDL_EVENT_KEY_DOWN) {
         // Ignoriere Key-Repeat Events
         if (event->key.repeat) {
@@ -408,7 +534,6 @@ void restart_game(void) {
     // Welle 1 neu starten
     wave_init(1);
     powerup_reset_all();
-
 
     // Wichtig: Enemy System muss neu initialisiert werden
     // Das passiert automatisch in enemy_entity.c wenn wave_started auf false gesetzt wird

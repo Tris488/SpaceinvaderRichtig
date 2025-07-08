@@ -3,13 +3,13 @@
 #include "../enemy_entity.h"
 #include "../gameover.h"
 #include "../powerup.h"
+#include "../joystick_manager.h"  // NEU: Joystick-Manager einbinden
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     AppState *state = SDL_malloc(sizeof(AppState));
     *appstate = state;
     int height=600;
     int width=800;
-
 
     // Initialize SDL with proper flags - fix the logical operator
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
@@ -19,8 +19,20 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
         SDL_Log("SDL initialized successfully");
     }
 
+    // NEU: Joystick-Manager initialisieren
+    printf("Initialisiere Joystick-Manager...\n");
+    joystick_manager_init();
+    printf("Joystick-Manager initialisiert!\n");
+
     // Enable joystick events
-    SDL_SetJoystickEventsEnabled;
+    SDL_SetJoystickEventsEnabled(true);  // KORRIGIERT: Funktion korrekt aufrufen
+    bool joystick_events_enabled = SDL_JoystickEventsEnabled();
+    printf("Joystick-Events aktiviert: %s\n", joystick_events_enabled ? "JA" : "NEIN");
+
+    if (!joystick_events_enabled) {
+        printf("FEHLER: Joystick-Events konnten nicht aktiviert werden!\n");
+    }
+
 
     state->window = SDL_CreateWindow("Space Invaders", width, height, 0);
     if (!state->window) {
@@ -35,7 +47,6 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     }
 
     // Initialize game entities
-
     entities[entities_count++] = init_map(state->renderer);
     printf("entities_count before init_player: %i\n", entities_count);
     entities[entities_count++] = init_enemy_system(state->renderer);
@@ -49,7 +60,6 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     entities[entities_count++] = init_gameover_system(state->renderer);
     printf("Game Over system initialized, entity count: %i\n", entities_count);
     /*entities[entities_count++] = create_button_entity(state-> renderer);*/
-
 
     return SDL_APP_CONTINUE;
 }

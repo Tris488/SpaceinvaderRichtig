@@ -9,7 +9,7 @@
 // Enemy movement state
 
 void app_update(void *appstate) {
-    if (!appstate) return;
+
 
     AppState* state = (AppState*) appstate;
     state->last_tick = state->current_tick;

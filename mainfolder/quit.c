@@ -3,18 +3,26 @@
 //
 
 #include "quit.h"
+#include "../joystick_manager.h"
 
-void SDL_AppQuit(void *appstate, SDL_AppResult result) {
-    AppState *state = (AppState *) appstate;
-    for (int i = 0; i < entities_count; i++) {
-        if (entities[i].cleanup) {
-            entities[i].cleanup(entities[i].data);
+SDL_AppResult SDL_AppQuit(void *appstate, SDL_AppResult result) {
+    AppState *state = (AppState *)appstate;
+
+    // Joystick-Manager aufräumen
+    joystick_manager_cleanup();
+    SDL_Log("Joystick Manager cleaned up");
+
+    // Andere Cleanup-Aufgaben...
+    if (state) {
+        if (state->renderer) {
+            SDL_DestroyRenderer(state->renderer);
         }
+        if (state->window) {
+            SDL_DestroyWindow(state->window);
+        }
+        SDL_free(state);
     }
-    SDL_DestroyRenderer(state->renderer);
-    state->renderer = NULL;
-    SDL_DestroyWindow(state->window);
-    state->window = NULL;
+
     SDL_Quit();
-    SDL_free(state);
+    return result;
 }
