@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/tb/CLionProjects/SpaceinvaderRichtig1/vendored/SDL_image
+# Install script for directory: C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL_image
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Spaceinvaders")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/SpaceinvadersRichtig1")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

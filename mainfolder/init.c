@@ -4,12 +4,14 @@
 #include "../gameover.h"
 #include "../powerup.h"
 #include "../joystick_manager.h"  // NEU: Joystick-Manager einbinden
+#include "../database.h"
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     AppState *state = SDL_malloc(sizeof(AppState));
     *appstate = state;
     int height=600;
     int width=800;
+
 
     // Initialize SDL with proper flags - fix the logical operator
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
@@ -47,6 +49,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     }
 
     // Initialize game entities
+
+    initDB();
     entities[entities_count++] = init_map(state->renderer);
     printf("entities_count before init_player: %i\n", entities_count);
     entities[entities_count++] = init_enemy_system(state->renderer);
@@ -60,6 +64,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     entities[entities_count++] = init_gameover_system(state->renderer);
     printf("Game Over system initialized, entity count: %i\n", entities_count);
     /*entities[entities_count++] = create_button_entity(state-> renderer);*/
+
 
     return SDL_APP_CONTINUE;
 }

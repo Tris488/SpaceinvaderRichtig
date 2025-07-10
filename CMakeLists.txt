@@ -6,8 +6,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 set(PICS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/pictures")
 
-# Kopieren von Assets in Build-Verzeichnis:
-file(COPY ${PICS_DIR} DESTINATION ${CMAKE_BINARY_DIR})
+set(MYSQL_CONNECTOR_DIR "${CMAKE_SOURCE_DIR}/mysql-connector")
+include_directories(${MYSQL_CONNECTOR_DIR}/include)
+link_directories(${MYSQL_CONNECTOR_DIR}/lib)
+
 # This assumes the SDL source is available in vendored/SDL x
 add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 add_subdirectory(vendored/SDL_image EXCLUDE_FROM_ALL)
@@ -50,9 +52,17 @@ add_executable(SpaceinvadersRichtig1 WIN32 mainfolder/init.c
         joystick_manager.h
         logitech_extreme_3d_config.c
         logitech_extreme_3d_config.h
+        database.c
+        database.h
+)
+
+add_custom_command(TARGET SpaceinvadersRichtig1 POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${MYSQL_CONNECTOR_DIR}/lib/libmysql.dll"
+        $<TARGET_FILE_DIR:SpaceinvadersRichtig1>
 )
 
 # Link to the actual SDL3 library.
 target_link_libraries(SpaceinvadersRichtig1 PRIVATE SDL3::SDL3)
 target_link_libraries(SpaceinvadersRichtig1 PRIVATE SDL3_image::SDL3_image SDL3::SDL3)
-
+target_link_libraries(SpaceinvadersRichtig1 PRIVATE mysql)

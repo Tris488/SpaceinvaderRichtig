@@ -3,7 +3,9 @@
 //
 
 #include "quit.h"
+#include "../database.h"
 #include "../joystick_manager.h"
+
 
 SDL_AppResult SDL_AppQuit(void *appstate, SDL_AppResult result) {
     AppState *state = (AppState *)appstate;

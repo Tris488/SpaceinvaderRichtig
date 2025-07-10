@@ -1,0 +1,1 @@
+-I"C:/Users/User/CLionProjects/SpaceinvaderRichtig/mysql-connector/include" -I"C:/Users/User/CLionProjects/SpaceinvaderRichtig/cmake-build-debug/vendored/SDL/include-config-debug/build_config" -IC:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src -IC:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/include

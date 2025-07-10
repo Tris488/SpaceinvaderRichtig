@@ -7,6 +7,7 @@
 #include "enemy.h"
 #include "health.h"
 #include "powerup.h"
+#include "database.h"
 #include "joystick_manager.h"  // NEU: Joystick-Manager einbinden
 
 // Globale Variablen
@@ -83,51 +84,22 @@ void load_highscores(void) {
         highscores[i].score = 0;
     }
 
-    if (file) {
-        for (int i = 0; i < MAX_HIGHSCORES; i++) {
-            char line[256];
-            if (fgets(line, sizeof(line), file)) {
-                // Parse "NAME SCORE"
-                char* space = strrchr(line, ' ');
-                if (space) {
-                    *space = '\0';
-                    strncpy(highscores[i].name, line, MAX_NAME_LENGTH);
-                    highscores[i].name[MAX_NAME_LENGTH] = '\0';
-                    highscores[i].score = atoi(space + 1);
-                }
-            }
-        }
-        fclose(file);
-        printf("Highscores geladen.\n");
-    } else {
-        printf("Keine highscore.txt gefunden, verwende Default-Werte.\n");
-    }
-
+    db_load_highscores(highscores);
     highscores_loaded = true;
 }
 
-// Highscores speichern
 void save_highscores(void) {
-    FILE* file = fopen("highscore.txt", "w");
-    if (file) {
-        for (int i = 0; i < MAX_HIGHSCORES; i++) {
-            fprintf(file, "%s %d\n", highscores[i].name, highscores[i].score);
+    for (int i = 0; i < MAX_HIGHSCORES; i++) {
+        if (highscores[i].score > 0 && strcmp(highscores[i].name, "---") != 0) {
+            db_save_highscore(highscores[i].name, highscores[i].score);
         }
-        fclose(file);
-        printf("Highscores gespeichert.\n");
-    } else {
-        printf("FEHLER: Konnte highscore.txt nicht speichern!\n");
     }
+    printf("Highscores gespeichert.\n");
 }
 
 // Prüfen ob Score ein Highscore ist
 bool is_highscore(int score) {
-    if (!highscores_loaded) {
-        load_highscores();
-    }
-
-    // Prüfe ob Score in Top 5 kommt
-    return score > highscores[MAX_HIGHSCORES - 1].score;
+    return db_is_highscore(score); //1 neuer score
 }
 
 // Highscore hinzufügen

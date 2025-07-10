@@ -1,0 +1,1 @@
+  -L"C:/Users/User/CLionProjects/SpaceinvaderRichtig/mysql-connector/lib"  vendored/SDL_image/libSDL3_image.dll.a vendored/SDL/libSDL3.dll.a -lmysql -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

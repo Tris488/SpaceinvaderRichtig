@@ -1,0 +1,31 @@
+vendored/SDL/CMakeFiles/SDL3-shared.dir/src/joystick/SDL_gamepad.c.obj: \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\SDL_gamepad.c \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/SDL_internal.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\SDL_sysjoystick.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\SDL_joystick_c.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\SDL_steam_virtual_gamepad.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\SDL_gamepad_c.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\SDL_gamepad_db.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\controller_type.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\usb_ids.h \
+ C:\Users\User\CLionProjects\SpaceinvaderRichtig\vendored\SDL\src\joystick\hidapi/SDL_hidapi_nintendo.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_events_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/video/SDL_sysvideo.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/include/SDL3/SDL_vulkan.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/include/SDL3/SDL_stdinc.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/include/SDL3/SDL_error.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/include/SDL3/SDL_video.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/include/SDL3/SDL_begin_code.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/include/SDL3/SDL_close_code.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/video/SDL_surface_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/video/SDL_blit.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_clipboardevents_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_displayevents_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_dropevents_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_keyboard_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_keymap_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_mouse_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_touch_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_pen_c.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/SDL_internal.h \
+ C:/Users/User/CLionProjects/SpaceinvaderRichtig/vendored/SDL/src/events/SDL_windowevents_c.h
