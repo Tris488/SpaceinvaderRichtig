@@ -52,6 +52,8 @@ add_executable(SpaceinvadersRichtig1 WIN32 mainfolder/init.c
         joystick_manager.h
         logitech_extreme_3d_config.c
         logitech_extreme_3d_config.h
+        game_scale.c
+        game_scale.h
         database.c
         database.h
 )
