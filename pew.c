@@ -159,3 +159,4 @@ void cleanup_inactive_shots() {
         printf("%d inaktive Schüsse entfernt. Entities gesamt: %d\n", removed, entities_count);
     }
 }
+
