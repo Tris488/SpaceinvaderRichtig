@@ -3,6 +3,14 @@
 #include <stdlib.h>
 
 SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event *event) {
+    static int event_counter = 0;
+    if (event->type == SDL_EVENT_JOYSTICK_BUTTON_DOWN ||
+        event->type == SDL_EVENT_JOYSTICK_BUTTON_UP ||
+        event->type == SDL_EVENT_JOYSTICK_AXIS_MOTION ||
+        event->type == SDL_EVENT_JOYSTICK_HAT_MOTION) {
+        printf("[Events.c] Joystick-Event empfangen! Type: %d, Counter: %d\n",
+               event->type, ++event_counter);
+        }
     if (event->type == SDL_EVENT_QUIT) {
         return SDL_APP_SUCCESS;
     }
@@ -37,6 +45,8 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event *event) {
             entities[i].handle_events(event, entities[i].data);
         }
     }
+
+
 
     return SDL_APP_CONTINUE;
 }

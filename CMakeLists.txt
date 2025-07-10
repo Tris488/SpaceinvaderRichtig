@@ -46,6 +46,10 @@ add_executable(SpaceinvadersRichtig1 WIN32 mainfolder/init.c
         gameover.h
         powerup.c
         powerup.h
+        joystick_manager.c
+        joystick_manager.h
+        logitech_extreme_3d_config.c
+        logitech_extreme_3d_config.h
 )
 
 # Link to the actual SDL3 library.
