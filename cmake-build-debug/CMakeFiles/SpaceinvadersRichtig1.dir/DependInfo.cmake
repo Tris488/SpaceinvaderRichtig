@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/User/CLionProjects/SpaceinvaderRichtig/enemy.c" "CMakeFiles/SpaceinvadersRichtig1.dir/enemy.c.obj" "gcc" "CMakeFiles/SpaceinvadersRichtig1.dir/enemy.c.obj.d"
   "C:/Users/User/CLionProjects/SpaceinvaderRichtig/enemy_entity.c" "CMakeFiles/SpaceinvadersRichtig1.dir/enemy_entity.c.obj" "gcc" "CMakeFiles/SpaceinvadersRichtig1.dir/enemy_entity.c.obj.d"
   "C:/Users/User/CLionProjects/SpaceinvaderRichtig/entity.c" "CMakeFiles/SpaceinvadersRichtig1.dir/entity.c.obj" "gcc" "CMakeFiles/SpaceinvadersRichtig1.dir/entity.c.obj.d"
+  "C:/Users/User/CLionProjects/SpaceinvaderRichtig/game_scale.c" "CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj" "gcc" "CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj.d"
   "C:/Users/User/CLionProjects/SpaceinvaderRichtig/gameover.c" "CMakeFiles/SpaceinvadersRichtig1.dir/gameover.c.obj" "gcc" "CMakeFiles/SpaceinvadersRichtig1.dir/gameover.c.obj.d"
   "C:/Users/User/CLionProjects/SpaceinvaderRichtig/health.c" "CMakeFiles/SpaceinvadersRichtig1.dir/health.c.obj" "gcc" "CMakeFiles/SpaceinvadersRichtig1.dir/health.c.obj.d"
   "C:/Users/User/CLionProjects/SpaceinvaderRichtig/joystick_manager.c" "CMakeFiles/SpaceinvadersRichtig1.dir/joystick_manager.c.obj" "gcc" "CMakeFiles/SpaceinvadersRichtig1.dir/joystick_manager.c.obj.d"

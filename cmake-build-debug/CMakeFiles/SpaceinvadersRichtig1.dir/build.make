@@ -353,11 +353,26 @@ CMakeFiles/SpaceinvadersRichtig1.dir/logitech_extreme_3d_config.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/SpaceinvadersRichtig1.dir/logitech_extreme_3d_config.c.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\User\CLionProjects\SpaceinvaderRichtig\logitech_extreme_3d_config.c -o CMakeFiles\SpaceinvadersRichtig1.dir\logitech_extreme_3d_config.c.s
 
+CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj: CMakeFiles/SpaceinvadersRichtig1.dir/flags.make
+CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj: CMakeFiles/SpaceinvadersRichtig1.dir/includes_C.rsp
+CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj: C:/Users/User/CLionProjects/SpaceinvaderRichtig/game_scale.c
+CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj: CMakeFiles/SpaceinvadersRichtig1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\User\CLionProjects\SpaceinvaderRichtig\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj -MF CMakeFiles\SpaceinvadersRichtig1.dir\game_scale.c.obj.d -o CMakeFiles\SpaceinvadersRichtig1.dir\game_scale.c.obj -c C:\Users\User\CLionProjects\SpaceinvaderRichtig\game_scale.c
+
+CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\User\CLionProjects\SpaceinvaderRichtig\game_scale.c > CMakeFiles\SpaceinvadersRichtig1.dir\game_scale.c.i
+
+CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\User\CLionProjects\SpaceinvaderRichtig\game_scale.c -o CMakeFiles\SpaceinvadersRichtig1.dir\game_scale.c.s
+
 CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj: CMakeFiles/SpaceinvadersRichtig1.dir/flags.make
 CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj: CMakeFiles/SpaceinvadersRichtig1.dir/includes_C.rsp
 CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj: C:/Users/User/CLionProjects/SpaceinvaderRichtig/database.c
 CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj: CMakeFiles/SpaceinvadersRichtig1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\User\CLionProjects\SpaceinvaderRichtig\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\User\CLionProjects\SpaceinvaderRichtig\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj -MF CMakeFiles\SpaceinvadersRichtig1.dir\database.c.obj.d -o CMakeFiles\SpaceinvadersRichtig1.dir\database.c.obj -c C:\Users\User\CLionProjects\SpaceinvaderRichtig\database.c
 
 CMakeFiles/SpaceinvadersRichtig1.dir/database.c.i: cmake_force
@@ -389,6 +404,7 @@ SpaceinvadersRichtig1_OBJECTS = \
 "CMakeFiles/SpaceinvadersRichtig1.dir/powerup.c.obj" \
 "CMakeFiles/SpaceinvadersRichtig1.dir/joystick_manager.c.obj" \
 "CMakeFiles/SpaceinvadersRichtig1.dir/logitech_extreme_3d_config.c.obj" \
+"CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj" \
 "CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj"
 
 # External object files for target SpaceinvadersRichtig1
@@ -413,6 +429,7 @@ Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/gameover.c
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/powerup.c.obj
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/joystick_manager.c.obj
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/logitech_extreme_3d_config.c.obj
+Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/database.c.obj
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/build.make
 Debug/SpaceinvadersRichtig1.exe: vendored/SDL_image/libSDL3_image.dll.a
@@ -421,7 +438,7 @@ Debug/SpaceinvadersRichtig1.exe: C:/Users/User/CLionProjects/SpaceinvaderRichtig
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/linkLibs.rsp
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/objects1.rsp
 Debug/SpaceinvadersRichtig1.exe: CMakeFiles/SpaceinvadersRichtig1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\User\CLionProjects\SpaceinvaderRichtig\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking C executable Debug\SpaceinvadersRichtig1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\User\CLionProjects\SpaceinvaderRichtig\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking C executable Debug\SpaceinvadersRichtig1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\SpaceinvadersRichtig1.dir\link.txt --verbose=$(VERBOSE)
 	"C:\Program Files\JetBrains\CLion 2024.3\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/User/CLionProjects/SpaceinvaderRichtig/mysql-connector/lib/libmysql.dll C:/Users/User/CLionProjects/SpaceinvaderRichtig/cmake-build-debug/Debug
 

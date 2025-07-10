@@ -324,6 +324,30 @@ entity.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceinvadersRichtig1.dir\build.make CMakeFiles/SpaceinvadersRichtig1.dir/entity.c.s
 .PHONY : entity.c.s
 
+game_scale.obj: game_scale.c.obj
+.PHONY : game_scale.obj
+
+# target to build an object file
+game_scale.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceinvadersRichtig1.dir\build.make CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj
+.PHONY : game_scale.c.obj
+
+game_scale.i: game_scale.c.i
+.PHONY : game_scale.i
+
+# target to preprocess a source file
+game_scale.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceinvadersRichtig1.dir\build.make CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.i
+.PHONY : game_scale.c.i
+
+game_scale.s: game_scale.c.s
+.PHONY : game_scale.s
+
+# target to generate assembly for a file
+game_scale.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceinvadersRichtig1.dir\build.make CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.s
+.PHONY : game_scale.c.s
+
 gameover.obj: gameover.c.obj
 .PHONY : gameover.obj
 
@@ -691,6 +715,9 @@ help:
 	@echo ... entity.obj
 	@echo ... entity.i
 	@echo ... entity.s
+	@echo ... game_scale.obj
+	@echo ... game_scale.i
+	@echo ... game_scale.s
 	@echo ... gameover.obj
 	@echo ... gameover.i
 	@echo ... gameover.s

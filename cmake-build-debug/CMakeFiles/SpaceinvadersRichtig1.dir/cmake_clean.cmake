@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/SpaceinvadersRichtig1.dir/enemy_entity.c.obj.d"
   "CMakeFiles/SpaceinvadersRichtig1.dir/entity.c.obj"
   "CMakeFiles/SpaceinvadersRichtig1.dir/entity.c.obj.d"
+  "CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj"
+  "CMakeFiles/SpaceinvadersRichtig1.dir/game_scale.c.obj.d"
   "CMakeFiles/SpaceinvadersRichtig1.dir/gameover.c.obj"
   "CMakeFiles/SpaceinvadersRichtig1.dir/gameover.c.obj.d"
   "CMakeFiles/SpaceinvadersRichtig1.dir/health.c.obj"

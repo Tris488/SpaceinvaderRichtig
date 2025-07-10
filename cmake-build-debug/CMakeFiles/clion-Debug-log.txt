@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2024.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\Users\tb\CLionProjects\SpaceinvaderRichtig1 -B C:\Users\tb\CLionProjects\SpaceinvaderRichtig1\cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2024.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\Users\User\CLionProjects\SpaceinvaderRichtig -B C:\Users\User\CLionProjects\SpaceinvaderRichtig\cmake-build-debug
 -- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
 -- Could NOT find LibUSB (missing: LibUSB_LIBRARY LibUSB_INCLUDE_PATH) (found version "LibUSB_VERSION-NOTFOUND")
 -- 
@@ -126,8 +126,6 @@
 --  Build Static Library: OFF
 -- 
 -- Configuring SDL3_image 3.3.0
--- Performing Test HAVE_WL_NO_UNDEFINED
--- Performing Test HAVE_WL_NO_UNDEFINED - Success
 -- libavif-1.0 or compatible not found
 -- libavif NOT found
 -- Could NOT find TIFF (missing: TIFF_LIBRARY TIFF_INCLUDE_DIR) 
@@ -137,6 +135,6 @@
 -- SDL3_image backends:
 -- - enabled:  stb bmp gif jpg lbm pcx png pnm qoi svg tga xcf xpm xv
 -- - disabled: imageio wic avif jxl tif webp
--- Configuring done (99.2s)
--- Generating done (0.3s)
+-- Configuring done (4.0s)
+-- Generating done (0.5s)
 -- Build files have been written to: C:/Users/User/CLionProjects/SpaceinvaderRichtig/cmake-build-debug
